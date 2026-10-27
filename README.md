@@ -1,6 +1,6 @@
-# engineering-rules
+# agent-playbook
 
-Rule files for the agent team.
+All rule files and skills for the agent team: company rules, project templates, roles and skills.
 
 ## Structure
 - `company/` — Rules loaded for every task (always). Kept short.
