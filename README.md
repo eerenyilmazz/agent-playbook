@@ -1,16 +1,16 @@
-# md-kurallar
+# engineering-rules
 
-Agent ekibinin kural dosyaları.
+Rule files for the agent team.
 
-## Yapı
-- `sirket/` — Her işte yüklenen (always) kurallar. Kısa tutulur.
-- `sablonlar/` — İş türüne göre yüklenen (task) kurallar.
-- `roller/` — Rol bazlı kurallar.
-- `skills/` — Adım adım yordamlar (SKILL.md).
+## Structure
+- `company/` — Rules loaded for every task (always). Kept short.
+- `templates/` — Rules loaded by project type (task).
+- `roles/` — Role-specific rules.
+- `skills/` — Step-by-step procedures (SKILL.md).
 
-## Kurallar
-- md "ne ve neden"i anlatır, skill "nasıl"ı. Skill kural kopyalamaz, md'ye referans verir.
-- Bir konu tek dosyada durur.
-- Always dosyalarının toplamı 5000 token limitine sığmalı.
-- Her dosyada `owner` ve `durum` (taslak/onaylı) alanı bulunur.
-- Hukuk, mevzuat ve ödeme dosyaları uzman onayı olmadan "onaylı" olamaz.
+## Rules
+- An md says "what and why"; a skill says "how". Skills don't copy rules — they reference the md.
+- Each topic lives in exactly one file.
+- All `always` files together must fit the 5000-token prompt limit.
+- Every file has `owner` and `status` (draft/approved) fields.
+- Legal, compliance and payment files cannot be marked approved without expert sign-off.
