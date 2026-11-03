@@ -12,7 +12,7 @@ status: draft
 ## Commits
 - Conventional Commits: `feat|fix|refactor|perf|docs|test|chore(scope): summary`.
 - Breaking: `feat!:` + `BREAKING CHANGE:` footer.
-- One logical change per commit. No secrets, generated files or large binaries.
+- One logical change per commit (examples/commits.md). No secrets, generated files or large binaries.
 
 ## Pull requests
 - Body: what, why, risk level, test evidence, rollback path, breaking? (yes/no).

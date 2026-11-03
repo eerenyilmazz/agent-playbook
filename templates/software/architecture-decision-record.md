@@ -27,6 +27,8 @@ Date: YYYY-MM-DD · Deciders: …
 ## Rollback     how to undo, and the cost
 ```
 
+Example: examples/adr.md.
+
 ## Rules
 - Accepted ADRs are immutable; supersede, don't edit.
 - No irreversible implementation before `accepted`.

@@ -20,6 +20,8 @@ Rules live in: company/engineering-principles.md, company/git-and-versioning.md,
    - Request changes: ≥ 1 blocker.
    - Comment: only should/nit.
 
+Good PR description: examples/pull-request.md.
+
 ## Output format
 ```
 Verdict: approve | request changes | comment

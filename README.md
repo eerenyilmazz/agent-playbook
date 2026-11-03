@@ -11,6 +11,7 @@ Agents load a small set of **company rules** on every task, then only the **temp
 ## Contents
 
 - [Repository layout](#repository-layout)
+- [Quick start](#quick-start)
 - [How agents load files](#how-agents-load-files)
 - [Token budget](#token-budget)
 - [Templates](#templates)
@@ -32,12 +33,27 @@ agent-playbook/
 ├── templates/<type>/     # loaded by project type (8 types, 28 files)
 ├── roles/<role>/         # loaded by the role doing the work (14 roles, 28 files)
 ├── skills/<name>/SKILL.md# step-by-step procedures (12 skills)
+├── examples/             # quality bar: PR, ADR, postmortem, API errors, commits
 ├── docs/                 # human-only docs, never loaded by agents
-│   └── compliance-sources.md
+│   ├── compliance-sources.md
+│   └── project-readme-template.md
 ├── scripts/check.py      # validation + INDEX.md generator
+├── scripts/load.py       # builds the rule bundle for one task
+├── AGENTS.md             # protocol every agent follows (entry point)
 ├── INDEX.md              # generated routing table: file → trigger → size
 └── .github/workflows/    # CI running the checks
 ```
+
+## Quick start
+
+1. Point your agent system at `AGENTS.md` (loading protocol, rule precedence, gap reporting).
+2. Copy `docs/project-readme-template.md` into each project's README; fill in templates, roles and overrides.
+3. Build the rules for a task:
+   ```bash
+   python3 scripts/load.py --templates software,web-panel,web-commerce --role backend \
+       --skill api-design --task "add refund endpoint to admin panel"
+   ```
+   Prints the bundle to stdout (use `--list` for file names only) and the token total to stderr.
 
 ## How agents load files
 
@@ -47,10 +63,18 @@ agent-playbook/
 4. **Roles:** only the role doing the task (a backend task loads `roles/backend/…`, not `roles/frontend/…`).
 5. **Skills:** only when the task is that procedure (e.g. a PR review loads `skills/code-review`).
 
-Typical load: `company/` + 3–5 task files. Never load whole folders.
+`scripts/load.py` does this deterministically: `company/` → skill → all files of the role → up to 5 template files ranked by how well their `when:` line matches `--task` → stops at the budget.
 
-**Example — "add a refund endpoint to the admin panel":**
-`company/*` + `templates/web-commerce/payment-flow.md` + `templates/web-panel/permissions-and-roles.md` + `templates/web-panel/audit-trail.md` + `roles/backend/idempotency-and-queues.md` + `skills/api-design`.
+Typical load: 8–14 files, 2300–4000 tokens. Never load whole folders.
+
+### Rule precedence (highest first)
+1. User's explicit instruction for the task
+2. Project README overrides
+3. `company/`
+4. Templates, then roles
+5. Skill steps
+
+**Example — "add a refund endpoint to the admin panel"** (backend, api-design): `company/*` + `skills/api-design` + `roles/backend/*` + `payment-flow`, `permissions-and-roles`, `audit-trail`, `performance-budget`, `table-and-form-patterns` → 14 files, ~3900 tokens.
 
 ## Token budget
 
@@ -118,6 +142,18 @@ Boundary rule: **QA tests, reviewers review.** QA does not review code; reviewer
 
 Skills say **how**; rule files say **what and why**. Skills link to rule files and never copy them.
 
+## Examples
+
+Filled-in references agents use as the quality bar (loaded only when a skill or rule points to them):
+
+| File | Linked from |
+|---|---|
+| `examples/pull-request.md` | code-review skill |
+| `examples/adr.md` | ADR template |
+| `examples/postmortem.md` | incident-postmortem skill |
+| `examples/api-error.md` | api-design skill |
+| `examples/commits.md` | git-and-versioning |
+
 ## File format
 
 Rule files (`company/`, `templates/`, `roles/`):
@@ -183,10 +219,17 @@ python3 scripts/check.py --no-write # validate only (used in CI)
 
 Validates:
 - Required frontmatter (`scope`, `owner`, `status`; `when` for task files; `name`/`description` for skills, `name` = folder)
-- Every repo path linked in a file exists
+- Every repo path linked in a file exists (`company/`, `templates/`, `roles/`, `examples/`, `skills/`)
 - Token budgets per file and for `company/` in total
 
 GitHub Actions runs the check on every push and pull request (`.github/workflows/check.yml`).
+
+## Feedback loop
+
+Agents end their output with `Playbook gap: <file> — <problem> — <fix>` when a rule is missing or wrong. Collect these after each project and fix the files in one PR. Known limits until real use:
+- Token sizes are estimates (chars ÷ 4).
+- Default numbers (latency, PR size, rollout steps) are industry defaults; tune per project via overrides.
+- All files are `draft` until the owner reviews them.
 
 ## Conventions
 

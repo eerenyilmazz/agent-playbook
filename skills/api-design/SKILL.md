@@ -12,7 +12,7 @@ Rules: company/engineering-principles.md, company/documentation-standard.md, rol
 3. **Methods.** GET (safe) · POST (create, non-idempotent → `Idempotency-Key`) · PUT (replace, idempotent) · PATCH (partial) · DELETE (idempotent).
 4. **DTOs.** Separate request/response DTOs; never entities. camelCase; ISO-8601 UTC dates; money as `{amount: minor units, currency}`; ids as strings.
 5. **Lists.** Paginate always (cursor for large/changing data); max page size; filter/sort params documented.
-6. **Errors.** RFC 9457 body + stable `code` per failure case. List every code in the spec.
+6. **Errors.** RFC 9457 body + stable `code` per failure case (examples/api-error.md). List every code in the spec.
 7. **Security.** Auth scheme, required permission per operation, object-level rule, rate limit.
 8. **Concurrency.** `ETag`/`If-Match` or version field for updates that can collide.
 9. **Spec.** Write/update OpenAPI in the same PR; examples for each request/response/error.

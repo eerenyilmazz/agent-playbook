@@ -17,7 +17,7 @@ ALWAYS_TOTAL_BUDGET = 2500   # leaves room inside the 5000-token prompt limit
 ALWAYS_FILE_BUDGET = 400
 TASK_FILE_BUDGET = 600
 REQUIRED = {"scope", "owner", "status"}
-LINK_RE = re.compile(r"\b((?:company|templates|roles)/[a-z0-9/-]+\.md)\b")
+LINK_RE = re.compile(r"\b((?:company|templates|roles|examples|skills)/[a-zA-Z0-9/_-]+\.md)\b")
 
 
 def tokens(text: str) -> int:

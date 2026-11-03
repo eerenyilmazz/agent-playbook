@@ -28,5 +28,7 @@ Severity · Duration · Lead
 ## Actions        | action | owner | due | type: prevent/detect/mitigate |
 ```
 
+Filled example: examples/postmortem.md.
+
 ## Rules
 Blameless: describe systems and decisions, not people. Every action has an owner and a date and is tracked to closure. Review actions at the next sprint planning.
