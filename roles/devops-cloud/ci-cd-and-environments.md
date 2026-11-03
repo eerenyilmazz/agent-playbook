@@ -6,8 +6,6 @@ status: draft
 ---
 # CI/CD and Environments
 
-> An unreviewed earlier draft for this role exists outside this repo; merge it here.
-
 ## Environments
 - Local · staging · production. Staging mirrors prod config.
 - Same immutable artifact promoted across environments; config via env vars/secret manager.

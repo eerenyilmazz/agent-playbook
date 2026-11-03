@@ -4,7 +4,7 @@ description: Review a pull request for correctness, contract safety, architectur
 ---
 # Code Review
 
-Rules live in: company/engineering-principles.md, company/git-and-versioning.md, roles/code-reviewer/common-mistakes.md. Load the template/role files whose `when:` matches the changed code.
+Rules live in: company/engineering-principles.md, company/git-and-versioning.md, roles/code-reviewer/common-mistakes.md, roles/code-reviewer/review-rubric.md. Load the template/role files whose `when:` matches the changed code.
 
 ## Steps
 1. **Understand intent.** Read the PR description. Missing what/why/risk/test/rollback → request it before reviewing code.

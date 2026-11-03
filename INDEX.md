@@ -15,12 +15,13 @@ Always total: ~1298 tokens.
 | roles/backend/database-migrations.md | task | Any schema or data change in a server database | draft | 243 |
 | roles/backend/errors-and-logging.md | task | Error handling, API error responses, logging, observability | draft | 276 |
 | roles/backend/idempotency-and-queues.md | task | Retries, webhooks, messaging, background jobs | draft | 248 |
-| roles/code-reviewer/common-mistakes.md | task | Reviewing any pull request | draft | 281 |
+| roles/code-reviewer/common-mistakes.md | task | Reviewing any pull request | draft | 288 |
+| roles/code-reviewer/review-rubric.md | task | Reviewing any pull request; deciding approve vs request changes | draft | 294 |
 | roles/data-engineer/data-pipelines.md | task | ETL/ELT pipelines, analytics data, reporting | draft | 239 |
 | roles/decision-maker/adr-approval.md | task | Reviewing or approving an ADR | draft | 196 |
 | roles/decision-maker/cost-risk-matrix.md | task | Scoring options, risks or threats | draft | 180 |
 | roles/decision-maker/decision-framework.md | task | Any decision between options; escalations | draft | 210 |
-| roles/devops-cloud/ci-cd-and-environments.md | task | CI/CD pipelines, environments, infrastructure, deploys | draft | 305 |
+| roles/devops-cloud/ci-cd-and-environments.md | task | CI/CD pipelines, environments, infrastructure, deploys | draft | 283 |
 | roles/frontend/component-rules.md | task | Writing or reviewing frontend components | draft | 251 |
 | roles/frontend/i18n.md | task | User-facing text, dates, numbers, currency, multi-language | draft | 189 |
 | roles/frontend/state-management.md | task | Frontend data flow, stores, caching API data | draft | 202 |
@@ -69,7 +70,7 @@ Always total: ~1298 tokens.
 | templates/web-panel/table-and-form-patterns.md | task | Building data tables, lists, filters or forms in a panel | draft | 273 |
 | skills/a11y-audit/SKILL.md | skill | Audit a web page or flow against WCAG 2.2 AA with automated and manual checks, a | draft | 361 |
 | skills/api-design/SKILL.md | skill | Design or change a REST API or event contract safely — resources, errors, versio | draft | 510 |
-| skills/code-review/SKILL.md | skill | Review a pull request for correctness, contract safety, architecture, tests and  | draft | 383 |
+| skills/code-review/SKILL.md | skill | Review a pull request for correctness, contract safety, architecture, tests and  | draft | 393 |
 | skills/db-migration/SKILL.md | skill | Plan, write, test and run a zero-downtime server database migration (Flyway/Liqu | draft | 444 |
 | skills/economy-balance/SKILL.md | skill | Model, tune and verify an idle/incremental game economy — cost curves, income, p | draft | 450 |
 | skills/electron-release/SKILL.md | skill | Build, sign, notarize and publish a desktop (Electron or similar) release with a | draft | 428 |

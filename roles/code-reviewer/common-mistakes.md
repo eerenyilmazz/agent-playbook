@@ -6,7 +6,7 @@ status: draft
 ---
 # Common Mistakes
 
-Look for these in every review. Label each comment: **blocker** · **should** · **nit**.
+Look for these in every review. Scoring: review-rubric.md. Label each comment: **blocker** · **should** · **nit**.
 
 ## Correctness
 Unhandled null/empty · off-by-one · float money · time-zone-less dates · race conditions · behavior change hidden in a refactor.
