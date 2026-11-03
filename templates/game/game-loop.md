@@ -1,29 +1,27 @@
 ---
 scope: task
-template: game
+when: Game architecture, gameplay systems, save data
 owner: Eren
 status: draft
 ---
 # Game Loop
 
-## Core loop first
-- Define the core loop in one sentence (e.g. "explore → fight → loot → upgrade").
-- Prototype and playtest the core loop before building content around it.
-- Every feature must strengthen the core loop or the meta loop; otherwise it waits.
+## Design
+- Core loop in one sentence (e.g. explore → fight → loot → upgrade). Prototype and playtest it before content.
+- A feature must strengthen the core or meta loop, or it waits.
 
-## Technical loop
-- Fixed timestep for physics and gameplay logic; rendering may interpolate.
-- Game logic is independent of frame rate (use delta time correctly).
-- Separate game state from presentation, so logic can be tested without rendering.
-- Input is processed once per frame in a single place.
+## Technical
+- Fixed timestep for gameplay/physics; render interpolates.
+- Frame-rate independent logic (correct delta time).
+- Game state separate from presentation → testable headless.
+- Input read once per frame in one place.
+- Explicit state machine: boot, menu, playing, paused, game over.
+- Pause stops gameplay time; UI still runs.
 
-## Game states
-- Explicit states: boot, menu, playing, paused, game over. Transitions are defined, not scattered flags.
-- Pause truly stops gameplay time; UI keeps working.
+## Saves
+- Versioned format with migrations; updates never break saves.
+- Autosave on checkpoints and app background/quit; atomic write (temp file + rename); keep one backup.
+- Cloud save conflicts resolved by a defined rule.
 
-## Save data
-- Save format is versioned with migrations. Never break existing saves in an update.
-- Save regularly and on app background/quit; write atomically to avoid corruption.
-
-## Playtesting
-- Playtest every milestone with people who haven't seen the game; record where they get stuck.
+## Playtest
+Every milestone with fresh players; record where they get stuck or quit.

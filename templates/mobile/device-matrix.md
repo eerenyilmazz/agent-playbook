@@ -1,29 +1,23 @@
 ---
 scope: task
-template: mobile
+when: Mobile testing, choosing minimum OS versions
 owner: Eren
 status: draft
 ---
 # Device Matrix
 
-## Default minimums
-Set per project in its README, based on target users. Starting point:
-- iOS: current major version and the one before it.
-- Android: cover the large majority of active devices in the target market; check current distribution data before deciding.
+## Minimums (set per project from market data)
+- iOS: current + previous major.
+- Android: cover the large majority of active devices in the target market; check current distribution before deciding.
 
-## Test matrix (minimum before release)
-- One small-screen phone and one large-screen phone per platform.
-- One low-end Android device (limited RAM, slower CPU).
-- One tablet if the app supports tablets.
-- Latest OS version and the minimum supported OS version.
+## Test before release
+- Per platform: small phone, large phone; tablet if supported.
+- One low-end Android (≤ 4 GB RAM).
+- Latest OS and minimum supported OS.
 
-## Checks
-- Layout with largest system font size and display zoom.
-- Dark mode.
-- Notch/cutout and gesture navigation areas.
-- Rotation (if supported) and split-screen.
-- Poor network and low battery mode.
+## Check
+Largest font/display zoom · dark mode · notch/cutouts and gesture nav · rotation/split-screen (if supported) · slow network · low-power mode · app resume after process death.
 
 ## Rules
-- Raising the minimum OS version is a breaking change for some users: decide with data and announce it.
-- Use a device cloud for devices not physically available.
+- Raising minimum OS is breaking for some users: decide with data, announce first.
+- Use a device cloud for missing hardware.

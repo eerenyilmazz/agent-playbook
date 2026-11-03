@@ -1,27 +1,27 @@
 ---
 scope: task
-template: software
+when: Building endpoints, queries, pages; any performance concern
 owner: Eren
 status: draft
 ---
 # Performance Budget
 
-Numbers below are defaults. A project may override them in its own README.
+Defaults; a project may override in its README.
 
 ## Backend
-- API p95 latency: < 300 ms for reads, < 800 ms for writes.
-- No N+1 queries. Every list endpoint is paginated.
-- Every database query on a hot path uses an index; check with `EXPLAIN`.
-- External calls have timeouts and are never made inside a DB transaction.
+- p95: reads < 300 ms, writes < 800 ms. p99 tracked.
+- No N+1. Every list is paginated (max page size enforced).
+- Hot-path queries use an index — verify with `EXPLAIN`.
+- Timeouts on every outbound call; circuit breaker for unstable dependencies.
+- No external calls inside DB transactions. Keep transactions short.
+- Connection pools sized and monitored.
 
-## Frontend
-- Largest Contentful Paint (LCP): < 2.5 s.
-- Interaction to Next Paint (INP): < 200 ms.
-- Cumulative Layout Shift (CLS): < 0.1.
-- Initial JS bundle: watch growth; a PR adding > 50 KB gzipped explains why.
+## Frontend (Core Web Vitals, p75)
+- LCP < 2.5 s · INP < 200 ms · CLS < 0.1.
+- PR adding > 50 KB gzipped JS explains why. Lazy-load routes.
 
 ## Rules
-- Measure before optimizing. No speculative optimization.
-- A regression beyond the budget blocks release unless the decision-maker accepts it in writing.
-- Load tests run before launches and major traffic changes.
-- Caching is added only with a clear invalidation rule.
+- Measure first (profiler, APM, `EXPLAIN`); no speculative optimization.
+- Cache only with a defined key, TTL and invalidation rule.
+- Exceeding budget blocks release unless the decision-maker accepts it in writing.
+- Load-test before launches and expected traffic spikes.

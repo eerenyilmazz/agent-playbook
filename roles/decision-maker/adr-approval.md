@@ -1,27 +1,27 @@
 ---
 scope: task
-role: decision-maker
+when: Reviewing or approving an ADR
 owner: Eren
 status: draft
 ---
 # ADR Approval
 
-The ADR template is in templates/software/architecture-decision-record.md. This file covers the approval process.
+Format: templates/software/architecture-decision-record.md.
 
-## Process
-1. Author writes the ADR with status `proposed` and opens a PR.
-2. Relevant roles review (backend, frontend, security, devops as needed) within an agreed time.
-3. Decision-maker approves, requests changes, or rejects with a reason.
-4. On approval, status becomes `accepted` and the PR is merged.
+## Flow
+1. Author opens PR with ADR `proposed`.
+2. Affected roles review (backend, frontend, security, devops) within an agreed time (default 2 working days).
+3. Decision-maker: accept · request changes · reject (with reason).
+4. Accept → status `accepted`, merge.
 
-## Approval checklist
-- Context explains the real problem, not just the solution.
-- At least two alternatives were genuinely considered.
-- Consequences include the downsides.
-- Security, data and cost impact are covered.
-- Rollback path is stated, even if expensive.
-- Backward compatibility is addressed.
+## Checklist
+- Real problem stated, not just the solution.
+- ≥ 2 genuine options, incl. do nothing.
+- Downsides and lock-in listed.
+- Security, data, cost and ops impact covered.
+- Backward compatibility and migration path.
+- Rollback stated, even if expensive.
 
 ## Rules
-- No hard-to-reverse implementation starts before the ADR is accepted.
-- A rejected ADR is kept with status `rejected` and the reason, so it isn't proposed again unchanged.
+- Rejected ADRs kept as `rejected` with reason.
+- No irreversible work before acceptance.

@@ -5,24 +5,27 @@ status: draft
 ---
 # Security Basics
 
-This file is the single source of truth. Detailed checks live in the security-reviewer role and the security-audit skill, which reference this file.
+Single source. Role files and skills reference this; they don't restate it.
 
 ## Secrets
-- Passwords, tokens and API keys never go into code, commits or logs.
-- Secrets come from environment variables or a secret manager. `.env` is in `.gitignore`.
-- A leaked secret is revoked and rotated immediately; deleting it from history is not enough.
+- Never in code, commits, logs, URLs or client bundles. Load from env/secret manager.
+- Leaked = revoke and rotate now. History rewrite alone is not a fix.
 
-## Input validation
-- All external data is untrusted: requests, files, headers, webhooks.
-- Validate on the server. Client-side validation is for UX only.
-- Parameterized queries only. No SQL built by string concatenation.
-- Encode output for its context (HTML, URL, JSON).
+## Input and output
+- All external input is untrusted (body, query, headers, files, webhooks). Validate server-side, allow-list where possible.
+- Parameterized queries only. Encode output for its context.
+- Uploads: check type by content, size limit, store outside web root, random names.
 
-## Authorization
-- Every endpoint checks authorization itself. Default: deny.
-- Error messages never expose internals (stack traces, SQL).
+## Auth
+- Passwords hashed with Argon2id or bcrypt. MFA for admin access.
+- Every endpoint enforces authorization, including object ownership. Default deny.
+- Rate-limit login, reset, OTP and expensive endpoints.
+- Sessions/tokens: short-lived, revocable, `Secure; HttpOnly; SameSite` cookies.
 
-## Dependency risk
-- Before adding a dependency: is it maintained, is the license OK, is it really needed?
-- Pin versions (commit the lock file).
-- Scan for known vulnerabilities regularly; critical ones are not deferred.
+## Transport and config
+- TLS everywhere. Security headers (CSP, HSTS, X-Content-Type-Options).
+- Errors never expose stack traces, SQL or versions.
+- Least privilege for services, DB users and cloud roles.
+
+## Dependencies
+- Justify each new one; pin via lock file; scan in CI; critical CVEs fixed immediately.

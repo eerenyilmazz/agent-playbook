@@ -1,28 +1,27 @@
 ---
 scope: task
-role: mobile-developer
+when: Writing iOS/Android/cross-platform app code
 owner: Eren
 status: draft
 ---
 # Mobile Developer Rules
 
-Project rules: templates/mobile/ (store-release, permissions-and-privacy, offline-and-sync, device-matrix).
+Project rules: templates/mobile/.
 
 ## Architecture
-- Separate UI, state/presentation and data layers. No network or database calls from UI code.
-- Follow the project's existing architecture (e.g. MVVM). No new framework without an ADR.
-- Navigation in one place; deep links tested.
+- UI · presentation/state · data layers separated; no network/DB from UI.
+- Follow the existing pattern (e.g. MVVM); new framework needs an ADR.
+- Central navigation; deep links tested.
 
 ## Rules
-- Main thread is for UI only; I/O and heavy work run in the background.
-- Handle lifecycle correctly: background, kill, restore, rotation. No lost user input.
-- Every network call: timeout, error state, retry option.
-- Sensitive data in Keychain/Keystore; no secrets in the app bundle.
-- Images sized and cached; lists virtualized.
-- Old app versions keep working against the API (backward compatibility).
-- Crash reporting and basic analytics integrated before the first release.
-- Feature flags for risky features (mobile can't roll back instantly).
+- Main thread for UI only.
+- Survive lifecycle: background, process death, restore, rotation — no lost input.
+- Every network call: timeout, error state, retry.
+- Secrets in Keychain/Keystore; none in the bundle.
+- Images sized and cached; lists virtualized; startup time tracked (cold start target set per project).
+- Old app versions keep working against the API.
+- Crash reporting + analytics before first release.
+- Risky features behind remote flags.
 
-## Testing
-- Unit tests for presentation and data logic; UI tests for critical flows.
-- Test on real devices from the device matrix before release.
+## Tests
+Unit for presentation/data; UI tests for critical flows; real devices from the device matrix before release.

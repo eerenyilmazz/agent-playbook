@@ -1,25 +1,22 @@
 ---
 scope: task
-template: desktop
+when: Building desktop installers for distribution
 owner: Eren
 status: draft
 ---
 # Signing and Notarization
 
 ## macOS
-- Signed with a Developer ID certificate, hardened runtime enabled.
-- Notarized by Apple and the ticket stapled to the app/installer.
-- Entitlements limited to what the app needs.
+Developer ID certificate · hardened runtime · minimal entitlements · notarized · ticket stapled.
 
 ## Windows
-- Signed with a code signing certificate (EV or OV; EV builds SmartScreen reputation faster).
-- Timestamp every signature so it stays valid after the certificate expires.
+Code signing certificate (keys now required on HSM/hardware token or cloud signing service) · every signature timestamped · signed installer and binaries.
 
 ## Linux
-- Packages (deb/rpm/AppImage) signed or published with checksums.
+Signed packages or published checksums (SHA-256).
 
 ## Rules
-- Signing happens only in CI. Certificates and keys live in a secret manager or hardware token, never in the repo.
-- Certificate expiry dates are tracked with reminders well in advance.
-- An unsigned or un-notarized build never reaches users.
-- After signing, verify on a clean machine that the OS opens the app without warnings.
+- Sign only in CI; keys in secret manager/HSM, never in repo or laptops.
+- Track cert expiry with reminders ≥ 30 days ahead.
+- Unsigned/un-notarized builds never reach users.
+- Verify on a clean machine: opens without OS warnings.

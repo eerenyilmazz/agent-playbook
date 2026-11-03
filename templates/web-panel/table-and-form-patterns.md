@@ -1,27 +1,25 @@
 ---
 scope: task
-template: web-panel
+when: Building data tables, lists, filters or forms in a panel
 owner: Eren
 status: draft
 ---
 # Table and Form Patterns
 
 ## Tables
-- Server-side pagination, sorting and filtering for any list that can grow.
-- Current filters, sort and page are reflected in the URL so views can be shared and survive refresh.
-- Every table has defined states: loading, empty (with a hint on what to do), error (with retry).
-- Columns with numbers and dates are right-aligned and consistently formatted.
-- Bulk actions show how many rows are affected and ask for confirmation when destructive.
-- Exports run server-side for large datasets.
+- Server-side paging, sorting, filtering for growing data; enforce max page size.
+- Filter/sort/page in the URL.
+- States: loading (skeleton), empty (with next action), error (with retry).
+- Numbers/dates right-aligned, locale-formatted; consistent column order.
+- Bulk actions: show affected count; confirm destructive ones.
+- Large exports run async server-side and notify when ready.
+- Prefer cursor/keyset pagination for big or fast-changing tables.
 
 ## Forms
-- Reactive forms; validators live in dedicated files, not templates.
-- Validate on blur and on submit; show errors next to the field in plain language.
-- Server errors are mapped back to the right fields.
-- Submit button is disabled while submitting; double submit is prevented on the server too (idempotency).
-- Unsaved changes warn before leaving the page.
-- Destructive actions (delete, cancel) require explicit confirmation and say what will happen.
-
-## Rules
-- Reuse the shared table/form components; don't build one-offs.
-- Large forms are split into sections or steps, not one long page.
+- Reactive forms; validators in dedicated files; same rules enforced server-side.
+- Validate on blur and submit; plain-language messages beside the field.
+- Map server field errors back to fields; general errors at top.
+- Disable submit while pending; server is idempotent against double submit.
+- Warn on unsaved changes. Confirm destructive actions, stating consequence.
+- Optimistic locking (version field) to prevent overwriting others' edits.
+- Long forms → sections or steps.

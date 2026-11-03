@@ -1,25 +1,25 @@
 ---
 scope: task
-template: idle-game
+when: Ads, in-app purchases, subscriptions in games
 owner: Eren
 status: draft
-review: expert-required (store policies / consumer law)
+review: expert-required (store policy/consumer law)
 ---
 # Monetization
 
 ## Models
-- Rewarded ads (opt-in), in-app purchases (currency packs, boosts, remove ads), optional subscription or pass.
-- Interstitial ads used sparingly and never interrupting a key moment.
+Rewarded ads (opt-in) · IAP (currency, boosts, remove ads) · optional pass/subscription. Interstitials rare, never at key moments.
 
 ## Rules
-- Rewarded ads are always optional and give a clear, fair reward.
-- Purchases are validated on the server (receipt validation) before granting items.
-- Restore purchases works for non-consumables and subscriptions.
-- "Remove ads" also removes forced interstitials permanently.
-- Prices shown come from the store (localized), never hard-coded.
-- No dark patterns: no fake timers, hidden costs or confusing currency conversions.
-- Games for children: follow store family policies and child-directed ad rules; confirm with an expert.
-- Loot boxes / random paid rewards: disclose odds and check local regulations.
+- Rewarded ads always optional with a clear fair reward.
+- Server-side receipt validation before granting; handle refunds/revocations.
+- Restore purchases for non-consumables and subscriptions.
+- "Remove ads" removes forced ads permanently.
+- Prices from the store (localized), never hard-coded.
+- No dark patterns: fake timers, hidden costs, confusing currency conversion.
+- Child audience: store family policies + child-directed ad settings; expert check.
+- Paid random rewards: disclose odds; check local law.
+- Ad consent (GDPR/UMP or equivalent) before personalized ads.
 
-## Measurement
-- Track ARPDAU, conversion rate, ad impressions per user and retention together; don't optimize revenue at retention's cost.
+## Measure
+ARPDAU, payer conversion, ads/DAU together with D1/D7/D30 retention. Never trade retention for short-term revenue.

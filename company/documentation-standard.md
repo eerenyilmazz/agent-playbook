@@ -5,25 +5,15 @@ status: draft
 ---
 # Documentation Standard
 
-## README (every repo)
-- What the project does (2–3 sentences).
-- How to run it locally.
-- How to run the tests.
-- Required environment variables (names, not values).
-- Owner.
+## Every repo
+- `README.md`: purpose, run locally, run tests, env var names, owner, chosen templates/roles.
+- `CHANGELOG.md`: per release — Added / Changed / Fixed / Removed / Security. Breaking first. User language, not commit dumps.
+- `docs/adr/`: decisions that are expensive to reverse. Template: templates/software/architecture-decision-record.md.
+- API contract: OpenAPI (REST) or schema files for events, versioned with the code.
+- `docs/runbook.md` for anything in production: deploy, rollback, alerts, common fixes.
 
-## ADR (architecture decision record)
-Written for any decision that is expensive to reverse. Full template: architecture-decision-record.md (single source).
-- File: `docs/adr/0001-short-title.md`
-- Sections: Context, Decision, Alternatives, Consequences, Status (proposed/accepted/superseded).
-- Accepted ADRs are never edited; a new ADR supersedes them.
-
-## Changelog
-- `CHANGELOG.md`, one section per release.
-- Headings: Added, Changed, Fixed, Removed.
-- Breaking changes go first and are clearly marked.
-- Written for the user; don't paste the commit list.
-
-## General
-- Docs are updated in the same PR as the code.
-- No duplication: each fact lives in one place; others link to it.
+## Rules
+- Docs change in the same PR as the code.
+- One fact, one place; link instead of copy.
+- Accepted ADRs are immutable; supersede with a new one.
+- Out-of-date doc = bug.

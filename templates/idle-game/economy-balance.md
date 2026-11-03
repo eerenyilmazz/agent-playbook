@@ -1,24 +1,24 @@
 ---
 scope: task
-template: idle-game
+when: Idle game currencies, costs, upgrades, prestige
 owner: Eren
 status: draft
 ---
 # Economy Balance
 
-Step-by-step tuning procedure: economy-balance skill. This file defines the rules.
+Tuning procedure: economy-balance skill.
 
-## Model
-- The whole economy is modeled in a spreadsheet or script before implementation: income per second, costs, time to each milestone.
-- Cost growth is exponential (cost = base × rate^level); income growth is slower, creating the "wall" that motivates upgrades and prestige.
-- Define target times: first upgrade (seconds), first prestige (e.g. hours), mid-game milestones.
+## Model first
+- Simulate the economy (sheet or script) before coding: income/s, costs, time to each milestone.
+- Costs grow exponentially (`base × rate^level`, rate typically 1.07–1.15); income grows slower → walls that drive upgrades/prestige.
+- Target times defined: first upgrade (seconds), first prestige (hours), later milestones.
 
 ## Rules
-- All balance values live in data/config files, never in code. Tune without a new build where possible (remote config).
-- Large numbers use a big-number type or library; plan display formatting (K, M, B, scientific) early.
-- Prestige resets give a clear, permanent multiplier; the second run must feel noticeably faster.
-- Every currency has both sources and sinks; no currency without a sink.
-- Log key economy events (purchase, prestige, time to milestone) to verify the model against real players.
+- All values in data/remote config, never code.
+- Big-number type from day one; display format (K, M, B… or scientific) decided early.
+- Prestige grants a clear permanent multiplier; run 2 noticeably faster than run 1.
+- Every currency has sources and sinks.
+- Log purchases, prestiges and time-to-milestone; compare with the model.
 
 ## Changes
-- Rebalancing that makes existing players weaker is a breaking change; compensate or migrate.
+Nerfs to existing players are breaking: compensate or migrate.

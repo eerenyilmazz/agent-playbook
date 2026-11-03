@@ -1,27 +1,29 @@
 ---
 scope: task
-template: mobile
+when: Publishing or updating an iOS/Android app
 owner: Eren
 status: draft
 ---
 # Store Release
 
-Step-by-step procedure: store-submission skill. This file defines the rules.
+Procedure: store-submission skill.
 
-## Before submission
-- Version name (SemVer) and build number incremented; build number always increases.
-- Release built in CI from a tagged commit, never from a laptop.
-- Signing keys and certificates stored in a secret manager; access is limited and documented. Losing the Android upload key or Apple certificates blocks releases.
-- Store listing updated: description, screenshots, privacy details/data safety form, age rating.
-- Privacy policy URL is live and matches what the app actually collects.
+## Build
+- Version name SemVer; build number strictly increasing.
+- Built and signed in CI from a tag, never locally.
+- Signing keys/certs in a secret manager; backup + access list documented. Android: Play App Signing enabled.
+
+## Listing
+- Description, screenshots, age rating, privacy labels / Data safety form match real behavior (incl. SDKs).
+- Live privacy policy URL; account deletion path if accounts exist.
+- Target API level / SDK requirements of the current store deadline met.
 
 ## Rollout
-- Internal / TestFlight / closed testing first.
-- Staged rollout on production (e.g. 5% → 20% → 50% → 100%), watching crash rate and reviews at each step.
-- Halt the rollout if crash-free users drop below the agreed threshold.
+- Internal → TestFlight/closed track → staged production (e.g. 5 → 20 → 50 → 100%).
+- Halt if crash-free users fall below the agreed threshold (e.g. 99.5%) or ANRs spike.
 
 ## Rules
-- Mobile releases can't be rolled back instantly. Risky features ship behind remote feature flags.
-- Keep backend APIs backward compatible with older app versions still in use.
-- A forced-update mechanism exists for critical fixes.
-- Review guideline rejections are logged with the fix, so they aren't repeated.
+- No instant rollback on mobile: risky features behind remote flags.
+- Backend stays compatible with all supported app versions.
+- Forced/soft update mechanism exists.
+- Log every review rejection and fix.

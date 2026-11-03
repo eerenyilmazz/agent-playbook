@@ -1,29 +1,27 @@
 ---
 scope: task
-template: web
+when: Building or changing any web UI
 owner: Eren
 status: draft
 ---
 # Accessibility
 
-Target: WCAG 2.2 level AA.
+Target: WCAG 2.2 AA.
 
-## Must-haves
-- Semantic HTML first: `button`, `a`, `nav`, `main`, `label`. ARIA only when HTML can't express it.
-- Every interactive element is reachable and usable by keyboard, with a visible focus style.
-- Every image has `alt` text; decorative images use `alt=""`.
-- Every form field has a visible label; errors are announced and explained in text.
-- Text contrast at least 4.5:1 (3:1 for large text and UI components).
-- Color is never the only way to convey meaning.
-- Page has one `h1` and a logical heading order.
-- Content works at 200% zoom and on 320 px width without horizontal scroll.
-- Respect `prefers-reduced-motion`.
+## Must
+- Semantic HTML first (`button`, `a`, `label`, landmarks); ARIA only to fill gaps.
+- Full keyboard use, logical tab order, visible focus, no focus traps (except modals, which return focus on close).
+- `alt` on images (`alt=""` if decorative).
+- Every input has a visible label; errors in text, linked via `aria-describedby`, announced.
+- Contrast ≥ 4.5:1 text, ≥ 3:1 large text and UI parts.
+- Never color alone for meaning.
+- One `h1`, ordered headings.
+- Works at 200% zoom and 320 px width.
+- Touch targets ≥ 24×24 px (aim 44).
+- Respect `prefers-reduced-motion`. No auto-playing media with sound.
 
-## Testing
-- Automated scan (e.g. axe) on every key page — catches only part of the issues.
-- Manual keyboard pass through main flows.
-- Quick screen reader check on critical flows before release.
+## Verify
+- Automated (axe/Lighthouse) on key pages in CI.
+- Manual keyboard pass on main flows; screen reader spot-check before release.
 
-## Rules
-- A new component is not done until it passes the checks above.
-- Accessibility regressions are treated as bugs, not enhancements.
+A11y regressions are bugs. Audit procedure: a11y-audit skill.

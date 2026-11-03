@@ -1,30 +1,28 @@
 ---
 scope: task
-template: web-commerce
+when: Payments, checkout, refunds, payment provider integration
 owner: Eren
 status: draft
-review: expert-required (payments / compliance)
+review: expert-required (payments/compliance)
 ---
 # Payment Flow
 
-> Draft. Payment provider and compliance details must be confirmed by an expert before approval.
+> Draft. Provider and compliance details need expert confirmation.
 
 ## Rules
-- Card data never touches our servers. Use the provider's hosted page or SDK (tokenization) to stay out of PCI DSS scope as much as possible.
-- 3D Secure is supported and used where required.
-- The source of truth for payment status is the provider's server-to-server callback (webhook), not the browser redirect.
-- Webhooks are verified (signature) and processed idempotently.
-- Every payment attempt has a unique idempotency key; retries never double-charge.
-- Order state and payment state are separate: `pending → paid → fulfilled`, `failed`, `refunded`, `partially_refunded`.
-- Amounts are stored as integers in minor units (kuruş/cents) with a currency code. No floating point.
+- Card data never touches our servers: hosted page or provider SDK tokenization (minimizes PCI DSS scope).
+- 3D Secure supported and used where required.
+- Truth = provider webhook (signature-verified), not the browser redirect.
+- Idempotency key per attempt; retries never double-charge. Webhooks processed idempotently.
+- Money: integer minor units + ISO currency. No floats.
+- Separate states: order (`pending → confirmed → fulfilled → cancelled`) and payment (`initiated → authorized → captured | failed | refunded | partially_refunded`).
 
-## Failure handling
-- Timeouts and unknown results are reconciled by querying the provider, not by guessing.
-- A daily reconciliation compares our records with the provider's report.
+## Failures
+- Unknown/timeout result → query provider; never guess.
+- Daily reconciliation vs provider report; mismatches alert.
 
 ## Refunds
-- Refunds go through the provider API and are linked to the original payment.
-- Refund permissions are separate and audited.
+Via provider API, linked to the original payment, separate permission, audited, partial refunds supported.
 
-## Testing
-- Test with the provider's sandbox: success, decline, 3DS challenge, timeout, duplicate webhook.
+## Test (sandbox)
+Success, decline, 3DS challenge, timeout, duplicate webhook, out-of-order webhook, partial refund.

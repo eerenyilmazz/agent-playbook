@@ -5,28 +5,25 @@ status: draft
 ---
 # Incidents and Rollback
 
-The step-by-step procedure lives in the incident-postmortem skill. This file defines the rules.
+Procedure: incident-postmortem skill. This file sets the rules.
 
-## Production incidents
-1. Stop the impact first, then look for the root cause.
-2. Rollback is the first choice (previous release or disabling a feature flag). No live fixes in production.
-3. Record what was observed, what was done, and when.
-4. Notify affected users/clients of the status.
+## Severity
+| Sev | Meaning | Response |
+|---|---|---|
+| 1 | Outage, data loss, security breach | Immediately, all hands |
+| 2 | Major feature broken, no workaround | Within 1 hour |
+| 3 | Minor, workaround exists | Next working day |
 
-## Hotfixes
-- Branch `hotfix/` from `main`. Scope is the issue only.
-- Review is never skipped, only expedited.
-- After merge: tag the release and add a changelog entry.
+## Response
+1. Name one incident lead. Mitigate first, diagnose second.
+2. Prefer rollback or flag-off over a live fix.
+3. Keep a timestamped log of observations and actions.
+4. Update stakeholders at a fixed interval until resolved.
+5. Security or personal-data incidents: also follow data-and-privacy notification rules.
 
 ## Rollback rules
-- Every release has a known rollback path before it ships.
-- If a data migration cannot be reversed, say so explicitly before release.
+- Every release has a tested rollback path before it ships.
+- Irreversible migrations are declared before release and need a backup.
 
-## Postmortem template
-- **Summary:** What happened, how long, who was affected.
-- **Timeline:** Detection, response, resolution times.
-- **Root cause:** Technical and process.
-- **What went well / what went badly.**
-- **Action items:** With owner and due date.
-
-Postmortems are blameless; they fix the system, not the person.
+## Postmortem (Sev 1–2, within 5 working days)
+Summary · impact · timeline · root cause (technical + process) · what worked / didn't · actions with owner and date. Blameless.

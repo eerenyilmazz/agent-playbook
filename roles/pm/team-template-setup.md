@@ -1,26 +1,22 @@
 ---
 scope: task
-role: pm
+when: Starting a new project; choosing templates and roles
 owner: Eren
 status: draft
 ---
 # Team and Template Setup
 
-How the PM sets up a new project.
-
 ## Steps
-1. Identify the project type and pick the template(s) from `templates/` (e.g. web + web-panel).
-2. Pick the roles needed from `roles/`. Don't add roles the project doesn't need.
-3. Confirm which `company/` rules apply (all of them, by default).
-4. Create the project README with: goal, scope, out of scope, stack, owner, chosen templates and roles, any overrides (e.g. different performance budget).
-5. Create the initial backlog with acceptance criteria.
-6. Write the first risk register (see risk-management.md).
+1. Pick template folders from `templates/` (e.g. `software` + `web` + `web-panel`). `software` applies to all code projects.
+2. Pick only the roles the project needs from `roles/`.
+3. Project README: goal, scope, out of scope, stack, owner, templates, roles, overrides (e.g. budgets, browser matrix).
+4. Backlog with acceptance criteria.
+5. First risk register.
 
-## Loading rules
-- `company/` files: always loaded.
-- Template files: loaded for tasks of that type.
-- Role files: loaded for the role doing the task.
-- Keep the loaded set for one task within the prompt budget.
+## Loading (keeps prompts small)
+- `company/` → always.
+- A template/role file → only when its `when:` line matches the task.
+- Target ≤ 5 task files per task; check `scripts/check.sh` budgets.
 
 ## Gaps
-If a project needs a rule that doesn't exist, add it to the right file in this repo (one topic, one place) instead of writing it in the project.
+Missing rule → add it to the right file in this repo (one topic, one place), not to the project.

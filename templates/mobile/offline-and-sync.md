@@ -1,26 +1,25 @@
 ---
 scope: task
-template: mobile
+when: Offline support, local storage, data sync on mobile
 owner: Eren
 status: draft
 ---
 # Offline and Sync
 
-## Decide per feature
-For each feature, state: works offline / read-only offline / online only. Document it.
+## Per feature, declare
+Offline full · offline read-only · online only. Documented in the feature spec.
 
 ## Rules
-- Local database is the UI's source of truth for offline features; network updates it.
-- Writes made offline go to an outbox queue with a client-generated id, sent when online.
-- The server handles retries idempotently using that id.
-- Conflict policy is defined per entity: last-write-wins, server-wins, or merge. Never undefined.
-- Sync is incremental (changes since a timestamp/version), not full downloads.
-- The user sees sync status: pending changes, last synced time, failures.
-- Network calls have timeouts and exponential backoff; no tight retry loops draining battery.
+- Local DB is the UI source for offline features; network updates it.
+- Offline writes → outbox with client-generated UUID; server processes idempotently.
+- Conflict policy per entity: last-write-wins, server-wins, or merge — never undefined.
+- Incremental sync via version/updated-at cursor; deletes synced as tombstones.
+- Timeouts + exponential backoff with jitter; respect battery/data saver; sync via OS background schedulers.
+- Visible sync status: pending, last synced, failed (with retry).
 
 ## Local data
-- Local schema has versioned migrations; app updates never lose unsynced data.
-- Clear local data on logout if it belongs to the user.
+- Versioned schema migrations; never lose unsynced data on update.
+- Clear user data on logout.
 
-## Testing
-- Test airplane mode, flaky network, app killed mid-sync, and two devices editing the same item.
+## Test
+Airplane mode, flaky network, kill mid-sync, two devices editing one item, clock skew.

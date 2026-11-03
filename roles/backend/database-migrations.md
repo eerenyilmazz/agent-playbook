@@ -1,28 +1,29 @@
 ---
 scope: task
-role: backend
+when: Any schema or data change in a server database
 owner: Eren
 status: draft
 ---
 # Database Migrations
 
-Step-by-step procedure: db-migration skill. This file defines the rules.
+Procedure: db-migration skill.
 
 ## Rules
-- All schema changes go through a migration tool (Flyway / Liquibase). No manual changes in any environment.
-- Applied migrations are never edited. Fix forward with a new migration.
-- Prefer additive changes: add columns/tables; avoid renames and drops.
-- Every migration has a rollback plan. If it can't be reversed, state the data-loss risk in the PR.
-- Migrations must work with both the old and new application version running (zero-downtime).
+- Only via Flyway/Liquibase. No manual changes in any environment.
+- Applied migrations are immutable; fix forward.
+- Additive by default. Rename/drop only through expand/contract.
+- Each PR states: reversible? rollback script or data-loss risk.
+- Must run while old and new app versions are live (zero downtime).
+- Schema and large data backfills in separate migrations.
 
-## Expand / contract for breaking changes
-1. **Expand:** Add the new column/table. App writes to both old and new.
-2. **Migrate:** Backfill data in batches.
-3. **Switch:** App reads from the new one.
-4. **Contract:** In a later release, remove the old column.
+## Expand / contract
+1. Expand: add new column/table; app writes both.
+2. Backfill in batches.
+3. Switch reads to new.
+4. Contract in a later release: remove old.
 
 ## Safety
-- New `NOT NULL` columns get a default or are added nullable then backfilled.
-- Large tables: create indexes concurrently/online; backfill in small batches.
-- Test the migration on a copy of production-sized data before release.
-- Back up before any destructive migration.
+- New `NOT NULL`: add nullable → backfill → constrain (or with a cheap default).
+- Big tables: online/concurrent index creation; batched updates; lock timeout set.
+- Rehearse on production-sized copy; measure duration.
+- Backup verified before destructive steps.

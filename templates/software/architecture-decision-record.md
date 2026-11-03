@@ -1,46 +1,32 @@
 ---
 scope: task
-template: software
+when: Making a decision that is expensive to reverse
 owner: Eren
 status: draft
 ---
-# Architecture Decision Record (ADR)
+# Architecture Decision Record
 
-Single source for the ADR template. Other files link here.
+Single source for the ADR format. Approval flow: roles/decision-maker/adr-approval.md.
 
-## When to write one
-- The decision is expensive to reverse (database, framework, API style, hosting, auth model).
-- More than one reasonable option exists.
-- Someone will later ask "why did we do it this way?"
+## Write one when
+Choosing or changing a database, framework, API style, auth model, hosting, integration pattern, or anything a future dev will ask "why?" about.
 
-## Location and naming
-`docs/adr/NNNN-short-title.md`, numbered sequentially, never reused.
+## File
+`docs/adr/NNNN-short-title.md` — sequential, never reused, ≤ 1 page.
 
-## Template
 ```
 # NNNN. Title
-Status: proposed | accepted | superseded by NNNN
-Date: YYYY-MM-DD
-Deciders: names/roles
+Status: proposed | accepted | rejected | superseded by NNNN
+Date: YYYY-MM-DD · Deciders: …
 
-## Context
-The problem and the forces at play (constraints, deadlines, team skills).
-
-## Decision
-What we will do, in one or two sentences.
-
-## Alternatives considered
-- Option A — why not
-- Option B — why not
-
-## Consequences
-Positive, negative, and what becomes harder later.
-
-## Rollback
-How we would undo this, and at what cost.
+## Context      problem, constraints, forces
+## Decision     one or two sentences
+## Options      each with why-not (incl. "do nothing")
+## Consequences pros, cons, what gets harder
+## Risk         level + mitigation
+## Rollback     how to undo, and the cost
 ```
 
 ## Rules
-- Accepted ADRs are immutable. Changes come as a new ADR that supersedes the old one.
-- Keep it under one page. Link to details instead of pasting them.
-- Approval process: see roles/decision-maker/adr-approval.md.
+- Accepted ADRs are immutable; supersede, don't edit.
+- No irreversible implementation before `accepted`.

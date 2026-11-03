@@ -1,25 +1,23 @@
 ---
 scope: task
-template: idle-game
+when: Idle game offline progress and time handling
 owner: Eren
 status: draft
 ---
 # Offline Earnings
 
-## Calculation
-- Offline time = now − last saved time, using a trusted time source where possible.
-- Earnings are calculated analytically (rate × time), not by simulating every tick.
-- A cap on offline time (e.g. a few hours) is a design choice; upgrades or purchases may raise it.
-- Apply an efficiency factor if offline earnings should be lower than active play.
+## Calculate
+- Offline time = now − last save, from a trusted source (server time when online).
+- Analytic formula (rate × time), never tick simulation.
+- Cap offline time (design choice; upgradable). Optional efficiency factor < 1.
 
 ## Anti-cheat
-- Device clock changes (moving time forward) are detected: compare with server time or monotonic clocks when available.
-- Negative or absurd durations are clamped and logged.
-- If there's a server, the server calculates offline earnings for anything tradeable or competitive.
+- Detect clock tampering: compare with server time or monotonic uptime.
+- Clamp negative/absurd durations and log them.
+- Server computes earnings for anything competitive or tradeable.
 
 ## UX
-- On return, show a clear "while you were away" summary with the amount and time.
-- Optional bonus (e.g. watch an ad to double) is offered, never forced.
+"While you were away" summary (time + amount). Optional bonus (e.g. rewarded ad ×2), never forced.
 
 ## Save
-- Save timestamp on every save and on app background/quit.
+Timestamp on every save and on background/quit.

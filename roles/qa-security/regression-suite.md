@@ -1,24 +1,24 @@
 ---
 scope: task
-role: qa-security
+when: QA planning tests, release sign-off
 owner: Eren
 status: draft
 ---
 # Regression Suite
 
-Test layers and general rules: templates/software/test-pyramid.md.
+Boundary: **QA tests running software.** Code/design review is security-reviewer and code-reviewer. Test layers: templates/software/test-pyramid.md.
 
-## Contents
-- **Smoke set (minutes):** Can users log in, reach the main screen, complete the core flow? Runs on every deploy.
-- **Core regression (automated):** Critical journeys and every bug that reached production. Runs on every PR or nightly.
-- **Full regression (before release):** Core + manual checks for areas changed in the release.
+## Sets
+- **Smoke (minutes):** login, main screen, core flow. Every deploy.
+- **Core (automated):** critical journeys + every escaped bug. Every PR or nightly.
+- **Release:** core + exploratory testing of changed areas.
 
 ## Rules
-- Every production bug adds a regression test before the fix is closed.
-- Flaky tests are fixed or quarantined within a set time; a flaky suite gets ignored.
-- The suite is maintained: obsolete tests are removed when features are removed, with a note.
-- Release is blocked if smoke or core regression fails.
-- Test data is created by the tests (or seeded), not dependent on manual setup.
+- Each production bug adds a regression test before closing.
+- Flaky tests fixed or quarantined within 2 working days.
+- Tests own their data (seeded/created); no manual setup.
+- Obsolete tests removed with the feature, noted in PR.
+- Smoke or core failure blocks release.
 
-## Release sign-off
-QA signs off with: what was tested, what wasn't, known issues, and risk level.
+## Sign-off
+Tested · not tested · known issues · risk level · go/no-go recommendation.

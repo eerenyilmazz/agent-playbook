@@ -1,24 +1,26 @@
 ---
 scope: task
-template: mobile
+when: Mobile permissions, SDKs, tracking, on-device data
 owner: Eren
 status: draft
 review: expert-required (privacy)
 ---
-# Permissions and Privacy
+# Permissions and Privacy (Mobile)
 
-General privacy rules: templates/software/data-and-privacy.md.
+General rules: templates/software/data-and-privacy.md.
 
 ## Permissions
-- Ask only for permissions the app truly needs, and only at the moment the feature is used (not on first launch).
-- Explain why before the system prompt (pre-permission screen).
-- The app keeps working when a permission is denied; the feature degrades gracefully with a way to enable it later.
-- Usage description strings (iOS) and permission rationale (Android) are clear and specific.
-- Background location, contacts, photos and microphone get extra review before being added.
+- Only what's needed; request in context, never all at launch.
+- Pre-permission screen explains the benefit.
+- Denial handled gracefully with a path to Settings.
+- Specific usage strings (iOS) and rationale (Android).
+- Extra review for background location, contacts, photos, mic, camera.
+- Prefer limited/partial access (photo picker, approximate location) when enough.
 
 ## Privacy
-- Store disclosures (App Privacy details, Data safety form) match the real data flow, including third-party SDKs.
-- Every third-party SDK is reviewed for what it collects before adding.
-- Tracking across apps requires the platform's tracking consent (e.g. iOS ATT).
-- Sensitive data stored in the platform secure storage (Keychain / Keystore), not plain preferences.
-- Account deletion is available inside the app if accounts can be created.
+- Store disclosures match the actual data flow, including SDKs.
+- Each SDK reviewed for data collection before adding; iOS privacy manifest present.
+- Cross-app tracking only with ATT consent (iOS).
+- Secrets/tokens in Keychain/Keystore, never plain prefs or bundle.
+- In-app account deletion when sign-up exists.
+- Screens with sensitive data excluded from screenshots/app switcher where needed.

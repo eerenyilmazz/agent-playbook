@@ -1,22 +1,22 @@
 ---
 scope: task
-role: frontend
+when: Frontend data flow, stores, caching API data
 owner: Eren
 status: draft
 ---
 # State Management
 
 ## Where state lives
-- **Component state:** UI-only state (open/closed, input focus). Keep it local.
-- **Feature state:** Shared within one feature; held in a feature service/facade.
-- **Server state:** Data from the API; cached, refetched, invalidated — not copied into many places.
-- **Global state:** Only for truly app-wide data (current user, settings). Needs a justification.
-- **URL state:** Filters, tabs, pagination — anything that should survive refresh or be shareable.
+- **Component:** UI-only (open, focus).
+- **Feature:** feature service/facade.
+- **Server:** cached API data with refetch/invalidation — never copied into many places.
+- **URL:** filters, tabs, paging.
+- **Global:** only app-wide (user, settings), justified.
 
 ## Rules
-- Follow the project's existing pattern (services with observables/signals, or a store). Don't introduce a new state library without an ADR.
-- Prefer the `async` pipe (or signals) over manual subscriptions; manual subscriptions must be cleaned up.
-- State is immutable: create new objects, don't mutate.
-- Components read state through a facade/service; they don't call HTTP directly.
-- Derived values are computed, not stored separately.
-- Loading, error and empty are explicit states, not inferred from `null`.
+- Follow the existing project pattern; new state library needs an ADR.
+- `async` pipe or signals; manual subscriptions cleaned up (`takeUntilDestroyed`).
+- Immutable updates. Derived values computed, not stored.
+- Components use facades; never call HTTP directly.
+- Explicit loading/error/empty states (not `null` guessing).
+- Cancel stale requests (`switchMap`); dedupe concurrent identical requests.

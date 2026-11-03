@@ -1,30 +1,29 @@
 ---
 scope: task
-template: software
+when: Writing or changing tests; planning test coverage
 owner: Eren
 status: draft
 ---
 # Test Pyramid
 
 ## Layers
-- **Unit (most):** One class/function, no I/O, milliseconds. Business rules live here.
-- **Integration (some):** Real database, queue or HTTP boundary (e.g. Testcontainers). Verifies wiring and queries.
-- **End-to-end (few):** Critical user journeys only (login, checkout, core flow). Slow and brittle; keep the count low.
+- **Unit (most):** no I/O, ms each. All business rules and edge cases.
+- **Integration (some):** real DB/broker/HTTP via Testcontainers or similar. Queries, mappings, transactions.
+- **Contract (APIs/events):** consumer-driven or schema tests so providers can't silently break clients.
+- **E2E (few):** critical journeys only.
 
 ## Rules
-- Existing tests must never be deleted or weakened to make a change pass.
-- Every bug fix ships with a test that fails before the fix.
-- Tests are deterministic: no real time, randomness or network without control.
-- Test names describe behavior: `returnsZeroWhenCartIsEmpty`.
-- One reason to fail per test.
-
-## What to test
-- Business rules, edge cases, error paths, boundaries (0, 1, max, null, empty).
-- Not getters/setters or framework code.
+- Never delete or weaken an existing test to pass a change.
+- Bug fix = test that fails before the fix.
+- Deterministic: inject clock and randomness; no real external network.
+- Name by behavior: `rejectsOrderWhenStockIsZero`. One reason to fail.
+- Cover boundaries: null, empty, 0, 1, max, invalid, unauthorized.
+- Skip trivial code (getters, framework wiring).
 
 ## Coverage
-- Coverage is a signal, not a goal. New code: meaningful tests for every branch of business logic.
-- A drop in coverage on a PR is explained in the PR description.
+Signal, not target. Business-logic branches must be covered; a coverage drop is explained in the PR.
 
-## Regression
-The regression suite is owned by QA: see roles/qa-security/regression-suite.md.
+## CI budget
+Unit + integration under 10 min on PRs. Slow suites run nightly.
+
+Regression suite ownership: roles/qa-security/regression-suite.md.

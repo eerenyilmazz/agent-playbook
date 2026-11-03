@@ -1,30 +1,25 @@
 ---
 scope: task
-role: pm
+when: PM ordering the backlog or resolving competing requests
 owner: Eren
 status: draft
 ---
 # Prioritization
 
-## Order of priority
-1. Production incidents and security issues.
-2. Commitments with a deadline (client, legal, release).
-3. Work that unblocks others.
-4. Highest value for effort.
-5. Everything else.
+## Order
+1. Sev 1–2 incidents and security issues.
+2. Deadline commitments (client, legal, release).
+3. Unblocking others.
+4. Best value ÷ effort.
 
-## Scoring (for the backlog)
-Use a simple score so decisions are explainable: **value × confidence ÷ effort**.
-- Value: 1–5 (user/business impact).
-- Confidence: 0.5 / 0.8 / 1.0 (how sure we are about value and effort).
-- Effort: 1–5 (relative size).
+## Score
+`value (1–5) × confidence (0.5/0.8/1.0) ÷ effort (1–5)`. Write one line of reasoning per score.
+
+## Ready for sprint (Definition of Ready)
+Clear outcome · acceptance criteria · risk level · dependencies known · fits one sprint (split if not).
 
 ## Rules
-- Every item has a clear outcome and acceptance criteria before it's prioritized.
-- Large items are split until each fits within one sprint.
-- "Must" is limited: if everything is must-have, nothing is.
-- Re-prioritize at sprint boundaries, not mid-sprint, except for incidents.
-- Saying no (or "not now") is written down with the reason.
-
-## Escalation
-Conflicts between stakeholders go to the decision-maker with options and trade-offs.
+- "Must" is capped (e.g. ≤ 60% of capacity).
+- Re-prioritize at sprint boundaries; mid-sprint only for incidents.
+- "No / not now" recorded with reason.
+- Stakeholder conflicts → decision-maker with options and trade-offs.

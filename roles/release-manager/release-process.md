@@ -1,30 +1,26 @@
 ---
 scope: task
-role: release-manager
+when: Planning, running or approving a release
 owner: Eren
 status: draft
 ---
 # Release Process
 
-Step-by-step checklist: release-checklist skill. Git and versioning rules: company/git-and-versioning.md.
+Checklist: release-checklist skill. Versioning: company/git-and-versioning.md.
 
-## Before release
-- Scope frozen; every item meets the definition of done.
-- QA sign-off with known issues listed (roles/qa-security/regression-suite.md).
-- Changelog written; breaking changes highlighted.
-- Rollback path confirmed and tested; irreversible migrations stated explicitly.
-- Release window agreed; avoid Fridays and holidays for high-risk releases.
-- Stakeholders and support informed of user-facing changes.
+## Before
+- Scope frozen; all items meet definition of done.
+- QA sign-off with known issues (roles/qa-security/regression-suite.md).
+- Changelog ready; breaking changes highlighted.
+- Rollback tested; irreversible migrations declared with backup.
+- Window agreed; no high-risk releases before weekends/holidays.
+- Support and stakeholders informed of user-facing changes.
 
-## During release
-- Follow the checklist; one person runs it, one person watches.
-- Smoke tests right after deploy.
-- Watch error rates, latency and key business metrics for an agreed period.
+## During
+One runs the checklist, one watches. Smoke tests right after deploy. Watch errors, latency and key business metrics for an agreed period.
 
-## After release
-- Tag and publish release notes.
-- Disable feature flags only after the feature is stable.
-- If something goes wrong: roll back first, then investigate (company/incidents-and-rollback.md).
+## After
+Tag + release notes. Remove flags only once stable. Problem → rollback first (company/incidents-and-rollback.md).
 
-## Go / no-go
-Any open critical bug, failed smoke test, or missing rollback plan is a no-go.
+## No-go if
+Open critical bug · failed smoke test · no rollback plan · missing sign-off.

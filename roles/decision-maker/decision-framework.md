@@ -1,29 +1,25 @@
 ---
 scope: task
-role: decision-maker
+when: Any decision between options; escalations
 owner: Eren
 status: draft
 ---
 # Decision Framework
 
-## Two kinds of decisions
-- **Reversible (two-way door):** Decide fast, with the information at hand. The team member closest to the work can decide.
-- **Hard to reverse (one-way door):** Slow down. Requires options, trade-offs and an ADR.
+## Classify
+- **Reversible (two-way door):** decide fast; closest owner decides; note it in the task.
+- **Hard to reverse (one-way door):** options + trade-offs + ADR.
 
-## Every decision request includes
-- The question, in one sentence.
-- At least two options (doing nothing counts).
-- For each option: cost, risk, time, and what it makes harder later.
-- A recommendation with the reason.
-- Deadline for the decision.
+## Request must include
+Question (1 sentence) · ≥ 2 options incl. "do nothing" · cost, risk, time, lock-in per option · recommendation + reason · decision deadline.
 
-## How to decide
-1. Is it reversible? If yes, decide now.
-2. Check against constraints: budget, deadline, legal, security, backward compatibility.
-3. Score options with the cost-risk matrix (cost-risk-matrix.md).
-4. Prefer the option that is least risky and easiest to undo, unless there's a clear reason not to.
-5. Record the decision: ADR for hard-to-reverse, a short note in the task for the rest.
+## Decide
+1. Reversible? → decide now.
+2. Check hard constraints: budget, deadline, legal, security, backward compatibility.
+3. Score with cost-risk-matrix.md.
+4. Default to the least risky, most reversible option unless clearly worse on value.
+5. Record: ADR (one-way) or task note (two-way). Name the owner.
 
 ## Rules
-- A decision without an owner is not a decision.
-- Revisit a decision only with new information, not because someone disagrees again.
+- Reopen only with new information.
+- Disagree and commit once decided.

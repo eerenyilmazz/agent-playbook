@@ -1,30 +1,31 @@
 ---
 scope: task
-role: devops-cloud
+when: CI/CD pipelines, environments, infrastructure, deploys
 owner: Eren
 status: draft
 ---
 # CI/CD and Environments
 
-Note: a separate draft for this role exists elsewhere and has not been reviewed; merge it here.
+> An unreviewed earlier draft for this role exists outside this repo; merge it here.
 
 ## Environments
-- At least: local, staging, production. Staging mirrors production configuration.
-- Configuration via environment variables; same build artifact promoted through environments.
-- Infrastructure as code (Terraform, etc.); no manual console changes without recording them.
+- Local · staging · production. Staging mirrors prod config.
+- Same immutable artifact promoted across environments; config via env vars/secret manager.
+- Infrastructure as code; manual console changes forbidden or recorded and back-ported.
 
-## CI
-- Every PR: build, tests, lint, dependency and secret scan.
-- Main branch builds produce a versioned, immutable artifact (image tagged with version/commit).
+## CI (every PR)
+Build · tests · lint · SAST · dependency + secret scan. Cache dependencies; target < 10 min.
 
 ## CD
-- Deploys are automated and repeatable; anyone authorized can deploy and roll back.
-- Zero-downtime deploys (rolling or blue/green). Database migrations follow roles/backend/database-migrations.md.
-- Rollback = redeploy the previous artifact, tested regularly.
+- Automated, repeatable deploys; versioned images (`version` + commit SHA).
+- Zero downtime: rolling or blue/green; readiness/liveness probes.
+- Migrations per roles/backend/database-migrations.md.
+- Rollback = redeploy previous artifact; rehearsed.
+- Production deploys require approval and are logged.
 
 ## Operations
-- Health checks, metrics, logs and alerts for every service.
-- Alerts are actionable; each one has a short runbook.
-- Backups are automated and restores are tested on a schedule.
-- Least-privilege access to cloud accounts; MFA everywhere.
-- Cost is monitored with budget alerts.
+- Metrics, logs, traces and alerts per service; each alert has a runbook entry.
+- SLOs for key services; alerts on SLO burn, not raw noise.
+- Automated backups; restore tested at least quarterly.
+- Least privilege + MFA on cloud accounts; OIDC for CI credentials.
+- Budget alerts; tag resources by project.

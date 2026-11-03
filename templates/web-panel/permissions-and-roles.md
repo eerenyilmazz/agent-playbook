@@ -1,29 +1,28 @@
 ---
 scope: task
-template: web-panel
+when: Admin panels, multi-user or multi-tenant apps, any access control
 owner: Eren
 status: draft
 ---
 # Permissions and Roles
 
 ## Model
-- Role-based access control: users → roles → permissions.
-- Permissions are fine-grained and named by action: `orders.read`, `orders.refund`, `users.delete`.
-- Code checks permissions, never role names. Roles are just bundles.
-- Default: deny. A new endpoint has no access until a permission is assigned.
+- RBAC: users → roles → permissions. Permissions named `resource.action` (`orders.refund`).
+- Code checks permissions, never role names.
+- Default deny: new endpoints have no access until mapped.
 
 ## Enforcement
-- Every check happens on the server. Hiding a button in the UI is UX, not security.
-- Object-level checks: a user with `orders.read` can still only see orders in their scope (tenant, branch, own records).
-- Multi-tenant data is always filtered by tenant at the query level.
+- Server-side, always. Hidden UI is UX, not security.
+- Object-level: permission + scope (tenant, branch, owner) checked on every read and write.
+- Multi-tenant: tenant filter applied centrally (query layer/filter), never per-query by hand.
+- Admin impersonation is explicit, time-limited, and audited.
 
 ## Administration
-- Assigning admin or permission-management rights is itself a permission.
-- A user cannot raise their own privileges.
-- Permission changes are written to the audit trail (see audit-trail.md).
+- Granting permissions is itself a permission; nobody elevates themselves.
+- Permission changes take effect promptly (short cache/token TTL) and are audited.
 
-## Testing
-- Each sensitive endpoint has tests for: allowed role, forbidden role, wrong tenant/owner.
+## Tests
+Each sensitive endpoint: allowed, forbidden role, other tenant/owner, unauthenticated.
 
-## Rules
-- Removing or renaming a permission is a breaking change; migrate existing roles first.
+## Compatibility
+Renaming/removing a permission is breaking — migrate roles first.

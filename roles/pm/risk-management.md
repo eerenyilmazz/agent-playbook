@@ -1,27 +1,20 @@
 ---
 scope: task
-role: pm
+when: PM tracking project risks
 owner: Eren
 status: draft
 ---
 # Risk Management
 
-## Risk register
-Each project keeps a short risk list. For each risk:
-- Description (what could go wrong).
-- Likelihood: low / medium / high.
-- Impact: low / medium / high.
-- Owner.
-- Response: avoid, reduce, accept, or transfer — with a concrete action.
-- Trigger: the early signal that it's happening.
+## Register (per project)
+| Risk | Likelihood | Impact | Owner | Response | Trigger |
+|---|---|---|---|---|---|
+Response = avoid · reduce · accept · transfer, with a concrete action. Score with roles/decision-maker/cost-risk-matrix.md.
 
 ## Rules
-- Review the register at every sprint planning.
-- High × high risks are raised to the decision-maker immediately.
-- Every task carries a risk level (low/medium/high) in its description.
-- High-risk changes need: feature flag or rollback plan, extra review, and a named person on watch after release.
+- Reviewed every sprint planning.
+- Critical/high risks → decision-maker the same day.
+- High-risk changes need: flag or rollback plan, extra reviewer, named watcher after release.
 
-## Common risks to check
-- Unclear requirements, single person dependency, third-party APIs, data migration, deadline with no buffer, legal/compliance, untested legacy code.
-
-Cost/risk evaluation for decisions: roles/decision-maker/cost-risk-matrix.md.
+## Check every project for
+Unclear scope · single-person dependency · third-party API/vendor · data migration · no schedule buffer · legal/compliance · untested legacy code · secrets/credentials ownership.

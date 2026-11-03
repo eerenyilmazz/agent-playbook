@@ -1,26 +1,26 @@
 ---
 scope: task
-role: data-engineer
+when: ETL/ELT pipelines, analytics data, reporting
 owner: Eren
 status: draft
 ---
 # Data Pipelines
 
-Privacy rules: templates/software/data-and-privacy.md.
+Privacy: templates/software/data-and-privacy.md.
 
 ## Design
-- Every pipeline has: source, owner, schedule, destination, freshness target, and what happens on failure.
-- Pipelines are idempotent: re-running for the same period gives the same result (no duplicates).
-- Incremental loads by watermark/partition, with the ability to backfill a date range.
-- Raw data is kept unchanged; transformations write to separate layers (raw → clean → reporting).
+- Each pipeline declares: source, owner, schedule, destination, freshness SLA, failure behavior.
+- Idempotent: re-run for a period gives the same result.
+- Incremental by watermark/partition; backfill any date range.
+- Layers: raw (unchanged) → clean → reporting.
 
 ## Quality
-- Data checks on every run: row counts, nulls in required fields, uniqueness, value ranges, freshness.
-- Failed checks stop downstream steps and alert the owner.
-- Schema changes in sources are detected; breaking changes are handled before they reach reports.
+- Checks every run: row counts, required non-nulls, uniqueness, ranges, freshness.
+- Failed check stops downstream and alerts the owner.
+- Source schema changes detected before they hit reports (data contracts where possible).
 
 ## Rules
-- Transformations are code in version control, reviewed like any other code.
-- Personal data is minimized, masked or pseudonymized in analytics layers.
-- Metrics have one definition in one place; dashboards use it instead of recalculating.
-- Costs (compute, storage) monitored; large queries reviewed.
+- Transformations in version control, reviewed, tested.
+- Personal data minimized/pseudonymized in analytics layers.
+- One metric, one definition (semantic layer); dashboards don't recalculate.
+- Partition/cluster large tables; review expensive queries; cost monitored.

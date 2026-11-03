@@ -1,26 +1,25 @@
 ---
 scope: task
-template: web-commerce
+when: Analytics events, funnel tracking, marketing tags, A/B tests
 owner: Eren
 status: draft
 ---
 # Conversion Tracking
 
-## Funnel events (standard names)
-`view_item` → `add_to_cart` → `begin_checkout` → `add_payment_info` → `purchase`.
-Also: `search`, `remove_from_cart`, `refund`.
+## Standard events
+`view_item → add_to_cart → begin_checkout → add_payment_info → purchase` · plus `search`, `remove_from_cart`, `refund`.
 
 ## Rules
-- Event names and parameters are defined in one tracking plan; no ad-hoc events.
-- `purchase` is sent once per order, with order id, value, currency and items. Deduplicate by order id.
-- Server-side confirmation for purchases where possible; browser-only tracking undercounts.
-- No personal data (email, phone, name) in analytics events unless hashed and legally allowed.
-- Tracking respects cookie consent; no marketing tags before consent.
+- One tracking plan defines every event and parameter; no ad-hoc events.
+- `purchase` once per order (order id, value, currency, items); dedupe by order id.
+- Send purchases server-side where possible; browser-only undercounts.
+- No raw personal data in events.
+- Consent first: no marketing/analytics tags before consent (Consent Mode or equivalent).
+- Tag manager changes are reviewed and versioned like code.
 
 ## Quality
-- Every new event is tested in a debug view before release.
-- Compare analytics purchases with real orders weekly; investigate gaps over a set threshold.
+- New events verified in debug view before release.
+- Weekly: analytics purchases vs real orders; alert above an agreed gap.
 
-## Experiments
-- A/B tests define the success metric and duration before starting.
-- Don't stop a test early because it "looks good".
+## A/B tests
+Pre-define metric, sample size and duration. No early stopping. One change per test.

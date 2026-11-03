@@ -1,24 +1,22 @@
 ---
 scope: task
-role: security-reviewer
+when: Adding or updating dependencies; vulnerability triage
 owner: Eren
 status: draft
 ---
 # Dependency Audit
 
-Base rules: company/security-basics.md (Dependency risk).
-
-## For a new dependency
-- Is it necessary, or can the standard library / an existing dependency do it?
-- Maintained? Recent releases, responsive to issues, more than one maintainer.
-- Popular enough to be scrutinized; not a typo-squat of a known package name.
-- License compatible with the project (watch copyleft licenses for closed-source work).
-- Transitive dependencies reviewed: how much does it pull in?
-- No install scripts doing unexpected things.
+## New dependency
+- Needed? Could stdlib or an existing dependency do it?
+- Maintained: recent releases, active issues, > 1 maintainer.
+- Not a typo-squat; verified publisher where available.
+- License fits (watch GPL/AGPL in closed-source).
+- Transitive weight acceptable; no surprising install scripts.
 
 ## Ongoing
-- Automated vulnerability scanning in CI (e.g. Dependabot, OWASP Dependency-Check, npm audit).
-- Severity SLA: critical fixed immediately, high within days, medium/low in normal planning.
-- A vulnerability that doesn't apply (code path not used) is documented, not just ignored.
-- Lock files are committed; updates come through PRs with passing tests.
-- Unused dependencies are removed.
+- CI scanning (Dependabot / OWASP Dependency-Check / npm audit / OSV).
+- SLA: critical immediately · high ≤ 7 days · medium/low in planning.
+- Non-applicable CVE documented with reason, not silently ignored.
+- Lock files committed; updates via PRs with green tests; batch minor updates regularly.
+- SBOM generated for released artifacts.
+- Unused dependencies removed.

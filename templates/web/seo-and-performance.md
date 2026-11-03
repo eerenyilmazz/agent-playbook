@@ -1,29 +1,30 @@
 ---
 scope: task
-template: web
+when: Public web pages, landing pages, content sites
 owner: Eren
 status: draft
 ---
 # SEO and Performance
 
-Performance targets: see templates/software/performance-budget.md.
+Speed targets: templates/software/performance-budget.md.
 
-## SEO basics
-- Unique `<title>` and meta description per page.
-- One `h1` per page matching its main topic.
-- Clean, stable URLs. Changing a URL requires a 301 redirect.
-- `canonical` tag on pages with duplicates (filters, parameters).
-- `sitemap.xml` and `robots.txt` present and correct.
-- Structured data (JSON-LD) where relevant: organization, product, article, breadcrumb.
-- Open Graph and Twitter card tags for shareable pages.
-- Content that must be indexed is server-rendered or pre-rendered.
-- `lang` attribute set; `hreflang` for multi-language sites.
+## Per page
+- Unique `<title>` (≤ 60 chars) and meta description (≤ 155).
+- One `h1`; `lang` set; `canonical` for duplicate/param URLs.
+- Open Graph + Twitter card for shareable pages.
+- JSON-LD where relevant (Organization, Product, Article, BreadcrumbList, LocalBusiness).
 
-## Performance for SEO
-- Images: modern formats (WebP/AVIF), explicit width/height, lazy-load below the fold.
-- Fonts: limit families and weights; use `font-display: swap`.
-- Third-party scripts loaded async/defer and reviewed before adding.
+## Site
+- Indexable content server-rendered or pre-rendered.
+- `sitemap.xml`, `robots.txt`; staging `noindex`, production indexable.
+- Stable URLs; changes get 301 redirects. No redirect chains.
+- `hreflang` for multi-language.
+- Custom 404 returning real 404 status.
 
-## Rules
-- Run Lighthouse on key pages before release; investigate any drop.
-- Staging must be `noindex`; production must not be.
+## Assets
+- Images: WebP/AVIF, `srcset`, explicit width/height, lazy below the fold, priority for LCP image.
+- Fonts: ≤ 2 families, subset, `font-display: swap`, preload critical.
+- Third-party scripts: async/defer, reviewed before adding, loaded after consent if tracking.
+
+## Verify
+Lighthouse on key pages before release; investigate any drop. Search Console connected.

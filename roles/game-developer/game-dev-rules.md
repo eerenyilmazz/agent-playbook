@@ -1,29 +1,28 @@
 ---
 scope: task
-role: game-developer
+when: Writing game code or editing scenes/prefabs
 owner: Eren
 status: draft
 ---
 # Game Developer Rules
 
-Project rules: templates/game/ and templates/idle-game/ where relevant.
+Project rules: templates/game/, templates/idle-game/.
 
 ## Code
-- Gameplay logic separated from engine/presentation code where practical, so it can be tested.
-- Data-driven: stats, balance and content in config/data files, not hard-coded.
-- Avoid deep inheritance; prefer components/composition.
-- No per-frame allocations or expensive lookups in update loops (see performance-and-fps.md).
-- Events/messages for decoupling systems, but keep them traceable; no "magic" global events.
+- Gameplay logic separate from engine/presentation where practical → testable.
+- Data-driven: stats, balance, content in data files.
+- Composition over deep inheritance.
+- No allocations or expensive lookups in update loops.
+- Decoupled via events, but traceable; no hidden global events.
 
 ## Workflow
-- Small, playable increments; the build is always runnable.
-- Scenes/prefabs edited by one person at a time, or split to avoid merge conflicts.
-- Large assets via Git LFS (see asset-pipeline.md).
-- Build for target platforms regularly, not only in the editor.
+- Small playable increments; build always runnable.
+- Scenes/prefabs: one editor at a time or split to avoid merge conflicts.
+- Large assets via Git LFS.
+- Build on target platforms regularly.
 
-## Saves and updates
-- Never break existing saves; versioned save format with migrations.
+## Saves
+Never break existing saves; versioned format + migrations.
 
-## Testing
-- Unit tests for game rules and economy math; automated smoke test that loads each scene.
-- Playtest notes recorded after each milestone.
+## Tests
+Unit tests for rules and economy math; automated smoke test loading each scene; playtest notes per milestone.

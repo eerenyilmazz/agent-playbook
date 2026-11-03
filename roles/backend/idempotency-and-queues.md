@@ -1,24 +1,27 @@
 ---
 scope: task
-role: backend
+when: Retries, webhooks, messaging, background jobs
 owner: Eren
 status: draft
 ---
 # Idempotency and Queues
 
 ## Idempotency
-- Any operation a client may retry (payments, orders, webhooks) accepts an idempotency key.
-- The server stores the key with the result; a repeated key returns the same result without repeating the side effect.
-- Keys expire after a defined period.
-- Consumers of messages and webhooks are idempotent: processing the same message twice has no extra effect.
+- Retryable writes (payments, orders, webhooks) accept an `Idempotency-Key`.
+- Store key + request hash + result; same key → same result, no repeat side effect; different body with same key → 422.
+- Keys expire after a defined window.
+- All consumers idempotent (dedupe by message id or natural key).
 
-## Queues and messaging
-- Assume at-least-once delivery. Exactly-once is not guaranteed; idempotency handles duplicates.
-- Use the transactional outbox pattern when a DB change and a message must both happen.
-- Retries use exponential backoff with a max attempt count.
-- Messages that keep failing go to a dead-letter queue, with alerting. DLQs are monitored and handled, not ignored.
-- Message schemas are versioned; consumers tolerate unknown fields. Breaking schema changes need a new version.
-- Message ordering is only assumed where the broker guarantees it (e.g. per partition key).
+## Messaging
+- Assume at-least-once. Duplicates handled by idempotency.
+- DB change + message → transactional outbox.
+- Retries: exponential backoff + jitter, max attempts → dead-letter queue with alert.
+- Versioned schemas; consumers ignore unknown fields; breaking change = new version/topic.
+- Order only where the broker guarantees it (partition key).
+- Poison messages never block the queue.
 
-## Observability
-- Track queue depth, consumer lag, processing time and DLQ count.
+## Jobs
+Scheduled jobs: single-run guarantee (lock/leader), resumable, and observable.
+
+## Observe
+Queue depth, consumer lag, processing time, DLQ size.

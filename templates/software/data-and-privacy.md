@@ -1,32 +1,33 @@
 ---
 scope: task
-template: software
+when: Handling personal data; logging, storage, retention, deletion
 owner: Eren
 status: draft
-review: expert-required (legal / KVKK / GDPR)
+review: expert-required (KVKK/GDPR)
 ---
 # Data and Privacy
 
-> Draft. Not legal advice. Must be reviewed by a qualified expert before being marked approved.
+> Draft, not legal advice. Needs expert sign-off before `approved`.
 
 ## Principles
-- Collect only what the feature needs (data minimization).
-- Every personal data field has a stated purpose and retention period.
-- Personal data is never used for a new purpose without a new legal basis.
+- Collect only what the feature needs. Each personal field has a purpose, legal basis and retention period.
+- No reuse for a new purpose without a new basis.
 
-## Engineering rules
-- Personal data is not written to logs. Mask or hash identifiers if needed.
-- Sensitive data is encrypted at rest and always in transit (TLS).
-- Access to personal data is role-based and audited.
-- Test and staging environments use anonymized or synthetic data, never raw production data.
-- Deletion requests must be technically possible: know every place the data is stored, including backups.
+## Engineering
+- No personal data in logs, URLs or analytics; mask/hash identifiers.
+- Encrypt in transit (TLS) and at rest for sensitive data.
+- Access is role-based and audited.
+- Non-prod uses synthetic or anonymized data only.
+- Maintain a data map: every store of personal data, including backups and third parties.
+- Deletion and export requests must be executable from that map.
+- Retention enforced by jobs, not by memory.
 
-## Turkey (KVKK) / EU (GDPR) checklist
-- Privacy notice (aydınlatma metni) shown where data is collected.
-- Explicit consent recorded where it is the legal basis; consent can be withdrawn.
-- Cross-border transfer of data (including cloud hosting abroad) checked with the expert.
-- Data breach procedure known; regulators expect fast notification (KVKK: 72 hours). Confirm current rules with the expert.
-- Registration obligations (e.g. VERBİS) checked with the expert.
+## KVKK / GDPR checklist (confirm with expert)
+- Privacy notice (aydınlatma metni) at collection point.
+- Explicit consent recorded and withdrawable where it's the basis.
+- Cross-border transfer (incl. foreign cloud) reviewed.
+- Breach notification: KVKK expects ~72 h; process known in advance.
+- VERBİS registration obligation checked.
 
 ## Owner
-Each project names a person responsible for privacy decisions.
+Each project names the person accountable for privacy decisions.

@@ -6,24 +6,22 @@ status: draft
 # Git and Versioning
 
 ## Branches
-- `main` is always releasable. No direct pushes.
-- Naming: `feature/short-name`, `fix/short-name`, `hotfix/short-name`.
-- Branches are short-lived — a few days at most.
+- `main` is protected and always releasable: no direct push, no force push.
+- `feature/…`, `fix/…`, `hotfix/…`; short-lived (days). Rebase on `main` before merge.
 
 ## Commits
-- Conventional Commits: `feat:`, `fix:`, `refactor:`, `docs:`, `test:`, `chore:`.
-- Breaking change: `feat!:` plus a `BREAKING CHANGE:` note in the body.
-- One commit = one logical change.
+- Conventional Commits: `feat|fix|refactor|perf|docs|test|chore(scope): summary`.
+- Breaking: `feat!:` + `BREAKING CHANGE:` footer.
+- One logical change per commit. No secrets, generated files or large binaries.
 
 ## Pull requests
-- Description covers: what, why, risk level (low/medium/high), how it was tested, rollback path.
-- No merge without at least one approval and green CI.
-- Prefer squash merge.
+- Body: what, why, risk level, test evidence, rollback path, breaking? (yes/no).
+- Merge requires: 1+ approval, green CI, resolved comments. Squash merge.
+- Revert first if `main` breaks; fix in a new PR.
 
 ## Versioning
-- SemVer: MAJOR (breaking), MINOR (feature), PATCH (fix).
-- Every release is tagged (`v1.4.2`) and gets a changelog entry.
+- SemVer. Tag every release `vX.Y.Z`; changelog entry per tag.
+- Public API/contract deprecations announced one MINOR before removal.
 
-## Merging to main
-- High-risk changes ship behind a feature flag.
-- Hotfixes branch from `main` and are tagged right after merge.
+## Hotfix
+- Branch from the released tag/`main`, minimal scope, expedited (not skipped) review, tag immediately.

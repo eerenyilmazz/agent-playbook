@@ -1,39 +1,30 @@
 ---
 scope: task
-role: code-reviewer
+when: Reviewing any pull request
 owner: Eren
 status: draft
 ---
 # Common Mistakes
 
-Review rubric lives in the existing review-rubric file. This is the list of mistakes to actively look for.
+Look for these in every review. Label each comment: **blocker** · **should** · **nit**.
 
 ## Correctness
-- Null/empty not handled; off-by-one at boundaries.
-- Money as floating point; dates without time zone.
-- Changed behavior hidden inside a "refactor".
+Unhandled null/empty · off-by-one · float money · time-zone-less dates · race conditions · behavior change hidden in a refactor.
 
-## API and data
-- Entity exposed in an API response instead of a DTO.
-- API field renamed/removed or meaning changed without being flagged as breaking.
-- Migration that drops or renames without expand/contract.
+## Contracts
+Entity in API response · field renamed/removed/meaning changed without breaking flag · enum value removed · migration without expand/contract · changed log format.
 
 ## Architecture
-- Business logic in controllers or templates.
-- Field injection instead of constructor injection.
-- New abstraction with a single implementation and no reason.
+Logic in controller/template · field injection · single-use abstraction · cross-layer calls · new dependency without justification.
 
 ## Transactions and performance
-- `@Transactional` added/removed without reason; external calls inside a transaction.
-- N+1 queries; unpaginated lists; missing index on a new query.
+Unjustified `@Transactional` change · external call in transaction · N+1 · unbounded list · missing index · blocking call on hot path.
 
 ## Errors and logs
-- Swallowed exceptions; logging and rethrowing (double logs).
-- Secrets or personal data in logs; changed log formats.
+Swallowed exception · log-and-rethrow · secrets/PII in logs · wrong log level.
 
 ## Tests
-- No test for the fix; tests weakened or deleted to pass.
-- Tests depending on real time, order or network.
+No test for the fix · weakened/deleted tests · time/order/network dependent tests.
 
 ## Hygiene
-- Magic numbers/strings; commented-out code; leftover debug output; unrelated changes in the same PR.
+Magic values · commented-out code · debug leftovers · unrelated changes · TODO without ticket.

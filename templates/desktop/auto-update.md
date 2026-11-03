@@ -1,25 +1,25 @@
 ---
 scope: task
-template: desktop
+when: Desktop app update mechanism and release channels
 owner: Eren
 status: draft
 ---
 # Auto Update
 
-Release procedure: electron-release skill. This file defines the rules.
+Release procedure: electron-release skill.
 
 ## Rules
-- Updates are signed; the app verifies the signature before installing.
-- Updates are served over HTTPS from a controlled location.
-- Release channels: stable and beta at minimum. Users choose; default is stable.
-- Staged rollout for stable when the update server supports it.
-- The app never updates in the middle of user work: download in background, install on restart or with user consent.
-- A failed update leaves the current version working; the user is informed.
-- A minimum-supported-version check exists to force updates for critical security fixes.
+- Updates signed; app verifies signature before install. HTTPS only, controlled host.
+- Channels: stable (default) and beta.
+- Staged rollout on stable when supported; ability to pause a rollout.
+- Download in background; install on restart or with consent — never mid-work.
+- Failed update leaves the current version working and informs the user.
+- Minimum-supported-version check for critical security fixes.
+- Delta updates where supported to cut download size.
 
 ## Compatibility
-- Local data format changes include a migration (see local-data-migration.md).
-- Downgrading is not supported unless explicitly designed; document it.
+- Local data changes ship with migrations (local-data-migration.md).
+- Downgrade unsupported unless designed; documented.
 
-## Monitoring
-- Track update success/failure rates and version distribution.
+## Monitor
+Update success/failure rate, version distribution, crash rate per version.

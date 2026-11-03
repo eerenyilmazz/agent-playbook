@@ -5,25 +5,27 @@ status: draft
 ---
 # Engineering Principles
 
+## Change safety
+- Production is live. Backward compatibility is mandatory; breaking changes need explicit request, label and risk note.
+- Small, isolated, reversible changes. No rewrites or architecture resets.
+- Behavior changes ship behind a feature flag when risky.
+- Every task states risk level (low/medium/high) and why.
+
 ## Code
-- Preserve existing structure. No rewrites; only small, reversible changes.
-- Layers: Controller → Service → Domain → Infrastructure. No business logic in controllers.
-- Functions are short and single-purpose. No magic numbers/strings; use constants.
-- Constructor injection. No unnecessary abstraction.
+- Layers: Controller → Service → Domain → Infrastructure. Controllers: request/response and validation only.
+- Entities never leave the service boundary; APIs use DTOs.
+- Constructor injection. Short single-purpose functions. No magic values.
+- No abstraction without a second use case. Comments explain why.
+- Config in environment, not code. Fail fast on missing config.
 
-## Naming
-- Names say what they do: `calculateTotal`, `isExpired`. No abbreviations.
-- Comments explain "why", not "what".
-
-## Small diffs
-- One PR does one thing. Target: under 400 lines.
-- Refactoring and behavior changes never share a PR.
-- Changes that break an API, schema or UI are flagged explicitly.
+## Diffs
+- One PR, one purpose, < 400 lines. Refactor and behavior change never mixed.
+- API, schema, event or UI contract change = flagged as potentially breaking.
 
 ## Definition of done
-1. Code compiles; existing tests pass.
-2. New code has at least unit tests.
-3. Acceptance criteria met (see acceptance-criteria.md).
-4. Code review approved.
-5. Docs and changelog updated if needed.
-6. Rollback path is known.
+1. Builds; all existing tests pass; none weakened.
+2. New logic has unit tests; bug fixes have a failing-first test.
+3. Acceptance criteria met.
+4. Reviewed and approved.
+5. Docs/changelog updated.
+6. Rollback path known; observability (logs/metrics) in place.
