@@ -67,7 +67,15 @@ Always total: ~1298 tokens.
 | templates/web-panel/audit-trail.md | task | Admin actions, sensitive data changes, compliance logging | draft | 207 |
 | templates/web-panel/permissions-and-roles.md | task | Admin panels, multi-user or multi-tenant apps, any access control | draft | 256 |
 | templates/web-panel/table-and-form-patterns.md | task | Building data tables, lists, filters or forms in a panel | draft | 273 |
+| skills/a11y-audit/SKILL.md | skill | Audit a web page or flow against WCAG 2.2 AA with automated and manual checks, a | draft | 361 |
+| skills/api-design/SKILL.md | skill | Design or change a REST API or event contract safely — resources, errors, versio | draft | 510 |
 | skills/code-review/SKILL.md | skill | Review a pull request for correctness, contract safety, architecture, tests and  | draft | 383 |
 | skills/db-migration/SKILL.md | skill | Plan, write, test and run a zero-downtime server database migration (Flyway/Liqu | draft | 444 |
+| skills/economy-balance/SKILL.md | skill | Model, tune and verify an idle/incremental game economy — cost curves, income, p | draft | 450 |
+| skills/electron-release/SKILL.md | skill | Build, sign, notarize and publish a desktop (Electron or similar) release with a | draft | 428 |
+| skills/incident-postmortem/SKILL.md | skill | Handle a production incident from detection to resolution, then write a blameles | draft | 449 |
+| skills/perf-profile/SKILL.md | skill | Find and fix a performance problem with measurement — backend latency, slow quer | draft | 398 |
 | skills/release-checklist/SKILL.md | skill | Run a production release from freeze to post-release watch, with go/no-go gates  | draft | 426 |
 | skills/security-audit/SKILL.md | skill | Audit a feature, PR or codebase for security issues in code, design, dependencie | draft | 456 |
+| skills/store-submission/SKILL.md | skill | Prepare and submit an iOS App Store or Google Play release, from build to staged | draft | 419 |
+| skills/test-writing/SKILL.md | skill | Write unit, integration or contract tests for new code, bug fixes or legacy code | draft | 385 |
