@@ -52,9 +52,9 @@ Always total: ~1298 tokens.
 | templates/mobile/device-matrix.md | task | Mobile testing, choosing minimum OS versions | draft | 199 |
 | templates/mobile/offline-and-sync.md | task | Offline support, local storage, data sync on mobile | draft | 235 |
 | templates/mobile/permissions-and-privacy.md | task | Mobile permissions, SDKs, tracking, on-device data | draft | 256 |
-| templates/mobile/store-release.md | task | Publishing or updating an iOS/Android app | draft | 258 |
+| templates/mobile/store-release.md | task | Publishing or updating an iOS/Android app | draft | 324 |
 | templates/software/architecture-decision-record.md | task | Making a decision that is expensive to reverse | draft | 237 |
-| templates/software/data-and-privacy.md | task | Handling personal data; logging, storage, retention, deletion | draft | 314 |
+| templates/software/data-and-privacy.md | task | Handling personal data; logging, storage, retention, deletion, cross-border hosting | draft | 508 |
 | templates/software/performance-budget.md | task | Building endpoints, queries, pages; any performance concern | draft | 243 |
 | templates/software/test-pyramid.md | task | Writing or changing tests; planning test coverage | draft | 272 |
 | templates/web/accessibility.md | task | Building or changing any web UI | draft | 233 |
@@ -63,8 +63,8 @@ Always total: ~1298 tokens.
 | templates/web/seo-and-performance.md | task | Public web pages, landing pages, content sites | draft | 274 |
 | templates/web-commerce/cart-stock-orders.md | task | Cart, inventory, pricing, discounts, order lifecycle | draft | 254 |
 | templates/web-commerce/conversion-tracking.md | task | Analytics events, funnel tracking, marketing tags, A/B tests | draft | 233 |
-| templates/web-commerce/payment-flow.md | task | Payments, checkout, refunds, payment provider integration | draft | 289 |
-| templates/web-commerce/tax-returns-compliance.md | task | Tax, invoices, returns, legal texts for e-commerce | draft | 279 |
+| templates/web-commerce/payment-flow.md | task | Payments, checkout, refunds, payment provider integration | draft | 366 |
+| templates/web-commerce/tax-returns-compliance.md | task | Tax, invoices, returns, legal texts for e-commerce | draft | 467 |
 | templates/web-panel/audit-trail.md | task | Admin actions, sensitive data changes, compliance logging | draft | 207 |
 | templates/web-panel/permissions-and-roles.md | task | Admin panels, multi-user or multi-tenant apps, any access control | draft | 256 |
 | templates/web-panel/table-and-form-patterns.md | task | Building data tables, lists, filters or forms in a panel | draft | 273 |

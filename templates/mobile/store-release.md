@@ -16,7 +16,9 @@ Procedure: store-submission skill.
 ## Listing
 - Description, screenshots, age rating, privacy labels / Data safety form match real behavior (incl. SDKs).
 - Live privacy policy URL; account deletion path if accounts exist.
-- Target API level / SDK requirements of the current store deadline met.
+- Platform minimums met (as of 2026-11-03, re-check yearly):
+  - **Google Play:** new apps and updates target **API 36** (from 31 Aug 2026; extension to 1 Nov 2026 on request); existing apps below API 35 lose visibility on newer devices.
+  - **App Store:** uploads built with the **iOS 26 SDK / Xcode 26** or later (from 28 Apr 2026).
 
 ## Rollout
 - Internal → TestFlight/closed track → staged production (e.g. 5 → 20 → 50 → 100%).

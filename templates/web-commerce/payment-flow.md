@@ -4,13 +4,15 @@ when: Payments, checkout, refunds, payment provider integration
 owner: Eren
 status: draft
 review: expert-required (payments/compliance)
+verified: 2026-11-03 (secondary sources)
 ---
 # Payment Flow
 
 > Draft. Provider and compliance details need expert confirmation.
 
 ## Rules
-- Card data never touches our servers: hosted page or provider SDK tokenization (minimizes PCI DSS scope).
+- Card data never touches our servers: hosted page/iframe or provider SDK tokenization (minimizes PCI DSS scope).
+- PCI DSS 4.0.1 SAQ A (since 31 Mar 2025) still requires the page hosting the iframe/redirect to be protected from malicious scripts: keep a script inventory, strict CSP, Subresource Integrity on third-party scripts, and change monitoring on checkout pages.
 - 3D Secure supported and used where required.
 - Truth = provider webhook (signature-verified), not the browser redirect.
 - Idempotency key per attempt; retries never double-charge. Webhooks processed idempotently.
