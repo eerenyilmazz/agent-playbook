@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Validate rule files and regenerate INDEX.md.
 
-Checks: frontmatter fields, broken repo-relative links, token budgets.
+Checks: frontmatter fields (rules and skills), broken repo-relative links, token budgets.
 Token count is estimated as chars / 4 (no network-dependent tokenizer).
 Usage: python3 scripts/check.py            # check + write INDEX.md
        python3 scripts/check.py --no-write # check only (CI)
@@ -62,6 +62,20 @@ def main() -> int:
                 errors.append(f"{rel}: broken link {link}")
 
         rows.append((rel, scope, meta.get("when", "every task"), meta.get("status", "?"), count))
+
+    for path in sorted((ROOT / "skills").rglob("SKILL.md")):
+        rel = path.relative_to(ROOT).as_posix()
+        text = path.read_text(encoding="utf-8")
+        meta = frontmatter(text)
+        for key in ("name", "description"):
+            if not meta.get(key):
+                errors.append(f"{rel}: missing frontmatter '{key}'")
+        if meta.get("name") != path.parent.name:
+            errors.append(f"{rel}: name must match folder '{path.parent.name}'")
+        for link in set(LINK_RE.findall(text)):
+            if not (ROOT / link).is_file():
+                errors.append(f"{rel}: broken link {link}")
+        rows.append((rel, "skill", meta.get("description", "")[:80], "draft", tokens(text)))
 
     if always_total > ALWAYS_TOTAL_BUDGET:
         errors.append(f"always total ~{always_total} tokens > {ALWAYS_TOTAL_BUDGET}")

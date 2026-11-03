@@ -67,3 +67,7 @@ Always total: ~1298 tokens.
 | templates/web-panel/audit-trail.md | task | Admin actions, sensitive data changes, compliance logging | draft | 207 |
 | templates/web-panel/permissions-and-roles.md | task | Admin panels, multi-user or multi-tenant apps, any access control | draft | 256 |
 | templates/web-panel/table-and-form-patterns.md | task | Building data tables, lists, filters or forms in a panel | draft | 273 |
+| skills/code-review/SKILL.md | skill | Review a pull request for correctness, contract safety, architecture, tests and  | draft | 383 |
+| skills/db-migration/SKILL.md | skill | Plan, write, test and run a zero-downtime server database migration (Flyway/Liqu | draft | 444 |
+| skills/release-checklist/SKILL.md | skill | Run a production release from freeze to post-release watch, with go/no-go gates  | draft | 426 |
+| skills/security-audit/SKILL.md | skill | Audit a feature, PR or codebase for security issues in code, design, dependencie | draft | 456 |
