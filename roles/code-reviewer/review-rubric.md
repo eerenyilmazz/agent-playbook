@@ -1,6 +1,6 @@
 ---
 scope: task
-when: Reviewing any pull request; deciding approve vs request changes
+when: Reviewing a PR; approve or request changes
 owner: Eren
 status: draft
 ---
@@ -15,7 +15,7 @@ Procedure: code-review skill. Mistake list: common-mistakes.md.
 | Correctness | Does what it claims, edge cases handled |
 | Contracts | No unflagged API/schema/event/log/UI break |
 | Architecture | Layers respected, no logic in controllers/templates, no needless abstraction |
-| Security | Rules in company/security-basics.md met |
+| Security | Rules in company/security-details.md met |
 | Performance | Within templates/software/performance-budget.md |
 | Tests | New logic tested, nothing weakened |
 | Readability | Clear names, small functions, no magic values |

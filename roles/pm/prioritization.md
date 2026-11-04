@@ -1,6 +1,6 @@
 ---
 scope: task
-when: PM ordering the backlog or resolving competing requests
+when: Ordering the backlog; competing requests
 owner: Eren
 status: draft
 ---

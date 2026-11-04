@@ -1,6 +1,6 @@
 ---
 scope: task
-when: Payments, checkout, refunds, payment provider integration
+when: Payments, checkout, refunds, providers
 owner: Eren
 status: draft
 review: expert-required (payments/compliance)

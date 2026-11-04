@@ -30,7 +30,7 @@ Agents load a small set of **company rules** on every task, then only the **temp
 
 ```
 agent-playbook/
-├── company/              # company-wide rules: 2 always, 3 task (5 files)
+├── company/              # company-wide rules: 2 always, 4 task (6 files)
 ├── templates/<type>/     # loaded by project type (8 types, 28 files)
 ├── roles/<role>/         # loaded by the role doing the work (14 roles, 28 files)
 ├── skills/<name>/SKILL.md# step-by-step procedures (12 skills)
@@ -58,7 +58,7 @@ agent-playbook/
 
 ## How agents load files
 
-1. **Always:** `company/` files with `scope: always` (engineering-principles, security-basics). The other company files (git, incidents, documentation) load like task files, by `when:`.
+1. **Always:** `company/` files with `scope: always` (engineering-principles, security-basics). The other company files (security-details, git, incidents, documentation) load like task files, by `when:`.
 2. **Route:** read `INDEX.md` and pick files whose `when:` trigger matches the task.
 3. **Templates:** only for the project types in the project README (e.g. `software` + `web` + `web-panel`). `software` applies to every code project.
 4. **Roles:** only the role doing the task (a backend task loads `roles/backend/…`, not `roles/frontend/…`).
@@ -83,7 +83,7 @@ Prompt limit is **5000 tokens**. Sizes are estimated as characters ÷ 4.
 
 | Scope | Limit | Current |
 |---|---|---|
-| All `always` files together | ≤ 2500 tokens · ≤ 2400 chars without frontmatter (ArkeLab) | ~560 tokens · ~2200 chars |
+| All `always` files together | ≤ 2500 tokens · ≤ 2400 chars without frontmatter (ArkeLab) | ~350 tokens · ~1300 chars |
 | One `always` file | ≤ 400 tokens · ≤ 1200 chars (ArkeLab) | — |
 | One task file (template/role) | ≤ 600 | — |
 | Per task total | ≤ 5000 tokens (ArkeLab: 5000 chars for the whole prompt) | always + ~5 files |

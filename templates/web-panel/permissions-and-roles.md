@@ -1,6 +1,6 @@
 ---
 scope: task
-when: Admin panels, multi-user or multi-tenant apps, any access control
+when: Access control, roles, multi-tenant data
 owner: Eren
 status: draft
 ---

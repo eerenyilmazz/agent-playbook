@@ -1,6 +1,6 @@
 ---
 scope: task
-when: Building endpoints, queries, pages; any performance concern
+when: Endpoints, queries, pages; performance
 owner: Eren
 status: draft
 ---

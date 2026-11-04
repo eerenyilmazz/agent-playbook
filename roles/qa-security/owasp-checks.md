@@ -1,12 +1,12 @@
 ---
 scope: task
-when: Security testing a release touching auth, payments, uploads, permissions
+when: Security-testing auth, payments, uploads, roles
 owner: Eren
 status: draft
 ---
 # OWASP Checks (Testing)
 
-QA **tests**; security-reviewer **reviews**. Rules: company/security-basics.md. Based on OWASP Top 10 / ASVS (use current edition).
+QA **tests**; security-reviewer **reviews**. Rules: company/security-details.md. Based on OWASP Top 10 / ASVS (use current edition).
 
 - **Access control:** swap ids (IDOR), lower-privilege role, other tenant, direct API calls bypassing UI.
 - **Crypto/transport:** HTTPS only, HSTS, secure cookie flags, no sensitive data in URLs.
