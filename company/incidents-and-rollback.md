@@ -1,5 +1,6 @@
 ---
-scope: always
+scope: task
+when: Production is broken or degraded; planning a release's rollback
 owner: Eren
 status: draft
 ---

@@ -5,27 +5,22 @@ status: draft
 ---
 # Engineering Principles
 
+## Precedence
+User's task instruction > project overrides > company > template > role > skill. On conflict follow the higher one and say so.
+
 ## Change safety
-- Production is live. Backward compatible; breaking changes need explicit request, label, risk note.
-- Small, isolated, reversible changes. No rewrites.
-- Risky behavior changes behind a feature flag.
-- Every task states risk level (low/medium/high) and why.
+- Production is live: backward compatible; breaking changes need explicit request, label, risk note.
+- Small, reversible changes; risky behavior behind a flag. No rewrites.
+- State risk level (low/medium/high) and why.
 
 ## Code
-- Layers: Controller → Service → Domain → Infrastructure. Controllers: request/response and validation only.
-- Entities never leave the service boundary; APIs use DTOs.
-- Constructor injection. Short single-purpose functions. No magic values.
+- Controller → Service → Domain → Infrastructure. Controllers: request/response and validation only.
+- APIs use DTOs, never entities. Constructor injection. No magic values.
 - No abstraction without a second use case. Comments explain why.
-- Config in environment, not code. Fail fast on missing config.
+- Config in environment; fail fast if missing.
 
 ## Diffs
-- One PR, one purpose, < 400 lines. Refactor and behavior change never mixed.
-- API, schema, event or UI contract change = flagged as potentially breaking.
+One PR, one purpose, < 400 lines. Never mix refactor and behavior change. Contract changes (API, schema, event, UI) flagged.
 
-## Definition of done
-1. Builds; all existing tests pass; none weakened.
-2. New logic has unit tests; bug fixes have a failing-first test.
-3. Acceptance criteria met.
-4. Reviewed and approved.
-5. Docs/changelog updated.
-6. Rollback path known; observability (logs/metrics) in place.
+## Done
+Builds; existing tests pass, none weakened · new logic tested, bug fix has failing-first test · acceptance criteria met · reviewed · docs/changelog updated · rollback known, logs/metrics in place.
