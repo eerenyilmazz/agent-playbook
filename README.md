@@ -246,3 +246,9 @@ ArkeLab imports this repo as the content layer of its *Team and Templates* model
 - **Single source:** security → `company/security-basics.md`; ADR format → `templates/software/architecture-decision-record.md`; incidents → `company/incidents-and-rollback.md`; migrations → `roles/backend/database-migrations.md`.
 - **Production-first:** backward compatibility, small reversible changes, feature flags for risk, explicit breaking-change labels.
 - **Commits:** Conventional Commits; PRs only, squash merge into `main` (see `CONTRIBUTING.md`).
+
+---
+
+## License
+
+Copyright (c) 2026 Eren Yılmaz. All rights reserved. The source is publicly visible for evaluation only; see [`LICENSE`](LICENSE). To request permission to use any part of it, contact eerenyilmazz1@gmail.com.
