@@ -6,6 +6,8 @@ Agents load a small set of **company rules** on every task, then only the **temp
 
 > All files are `draft` until reviewed. Files marked `review: expert-required` contain legal, tax, payment or store-policy rules and must be confirmed by a qualified expert before they are marked `approved`.
 
+> **About ArkeLab.** ArkeLab is the author's own application for running AI-agent teams on software projects; it is still in development and not publicly available. This repository is its rule library, but it is self-contained: you can use it with any AI agent without ArkeLab, and you can ignore the ArkeLab limits and notes below unless you work on that integration.
+
 ---
 
 ## Contents
@@ -273,7 +275,7 @@ Agents end their output with `Playbook gap: <file> — <problem> — <fix>` when
 
 ## ArkeLab
 
-ArkeLab imports this repo as the content layer of its *Team and Templates* model (company / template / role / skill records). Mapping, decisions and open items: `docs/arkelab-integration.md`.
+ArkeLab is the author's own, not yet public application for managing AI-agent teams and projects. It imports this repo as the content layer of its *Team and Templates* model (company / template / role / skill records). Mapping, decisions and open items: `docs/arkelab-integration.md`.
 
 - `check.py` also enforces ArkeLab limits: `always` file ≤ 1200 chars, `when` ≤ 200, `owner` ≤ 80.
 - Renaming or moving a file changes its identity in ArkeLab — list it in the PR.
