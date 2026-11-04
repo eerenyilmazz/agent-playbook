@@ -15,6 +15,7 @@ status: draft
 - Frame-rate independent logic (correct delta time).
 - Game state separate from presentation → testable headless.
 - Input read once per frame in one place.
+- Seeded randomness so bugs reproduce and tests are deterministic.
 - Explicit state machine: boot, menu, playing, paused, game over.
 - Pause stops gameplay time; UI still runs.
 

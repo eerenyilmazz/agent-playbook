@@ -16,6 +16,11 @@ Server DB migrations: roles/backend/database-migrations.md.
 - Never delete user data without explicit user action.
 - Newer-than-known version (downgrade) detected: don't write, show a clear message.
 
+## Cross-platform and shutdown
+- Handle path separators, line endings and filename case across Windows, macOS, Linux.
+- On quit, finish or safely cancel running work; never leave half-written files.
+- Logs and crash reports in a known location, free of user data and secrets.
+
 ## Locations
 - OS-standard app data dir, never the install dir.
 - Document every storage location so reset/uninstall are complete.

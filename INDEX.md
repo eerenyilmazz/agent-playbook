@@ -27,13 +27,13 @@ Always total: ~351 tokens, 1314 chars without frontmatter (ArkeLab budget 2400).
 | roles/frontend/i18n.md | task | UI text, dates, numbers, currency, languages | draft | 185 |
 | roles/frontend/state-management.md | task | Frontend data flow, stores, caching API data | draft | 202 |
 | roles/game-developer/game-dev-rules.md | task | Writing game code or editing scenes/prefabs | draft | 216 |
-| roles/mobile-developer/mobile-rules.md | task | Writing iOS/Android/cross-platform app code | draft | 236 |
-| roles/pm/prioritization.md | task | Ordering the backlog; competing requests | draft | 186 |
+| roles/mobile-developer/mobile-rules.md | task | Writing iOS/Android/cross-platform app code | draft | 247 |
+| roles/pm/prioritization.md | task | Ordering the backlog; competing requests | draft | 239 |
 | roles/pm/risk-management.md | task | PM tracking project risks | draft | 182 |
 | roles/pm/sprint-cadence.md | task | PM running sprints and status reporting | draft | 171 |
 | roles/pm/team-template-setup.md | task | Starting a new project; choosing templates and roles | draft | 201 |
 | roles/qa-security/owasp-checks.md | task | Security-testing auth, payments, uploads, roles | draft | 312 |
-| roles/qa-security/regression-suite.md | task | QA planning tests, release sign-off | draft | 212 |
+| roles/qa-security/regression-suite.md | task | QA planning tests, release sign-off | draft | 262 |
 | roles/qa-security/threat-modeling.md | task | Designing auth, payment, upload or data features | draft | 161 |
 | roles/release-manager/release-process.md | task | Planning, running or approving a release | draft | 232 |
 | roles/security-reviewer/abuse-cases.md | task | Security review of a feature's design or code | draft | 239 |
@@ -42,10 +42,10 @@ Always total: ~351 tokens, 1314 chars without frontmatter (ArkeLab budget 2400).
 | roles/technical-writer/writing-guide.md | task | Writing docs, guides, release notes, rule files | draft | 223 |
 | roles/ux-designer/ux-principles.md | task | Designing flows, screens, UX changes | draft | 241 |
 | templates/desktop/auto-update.md | task | Desktop app update mechanism and release channels | draft | 215 |
-| templates/desktop/local-data-migration.md | task | Desktop local data, paths, shutdown, logs | draft | 181 |
+| templates/desktop/local-data-migration.md | task | Desktop local data, paths, shutdown, logs | draft | 250 |
 | templates/desktop/signing-and-notarization.md | task | Building desktop installers for distribution | draft | 174 |
 | templates/game/asset-pipeline.md | task | Importing, organizing or loading game assets | draft | 197 |
-| templates/game/game-loop.md | task | Game architecture, gameplay systems, save data | draft | 237 |
+| templates/game/game-loop.md | task | Game architecture, gameplay systems, save data | draft | 254 |
 | templates/game/performance-and-fps.md | task | Game performance, optimization, target devices | draft | 256 |
 | templates/idle-game/economy-balance.md | task | Idle game currencies, costs, upgrades, prestige | draft | 229 |
 | templates/idle-game/monetization.md | task | Ads, in-app purchases, subscriptions in games | draft | 255 |
@@ -68,10 +68,10 @@ Always total: ~351 tokens, 1314 chars without frontmatter (ArkeLab budget 2400).
 | templates/web-commerce/tax-returns-compliance.md | task | Tax, invoices, returns, legal texts for e-commerce | draft | 467 |
 | templates/web-panel/audit-trail.md | task | Admin actions, sensitive changes, audit logs | draft | 204 |
 | templates/web-panel/permissions-and-roles.md | task | Access control, roles, multi-tenant data | draft | 250 |
-| templates/web-panel/table-and-form-patterns.md | task | Panel tables, filters, forms, bulk actions | draft | 269 |
+| templates/web-panel/table-and-form-patterns.md | task | Panel tables, filters, forms, bulk actions | draft | 289 |
 | skills/a11y-audit/SKILL.md | skill | Audit a web page or flow against WCAG 2.2 AA with automated and manual checks, a | draft | 361 |
 | skills/api-design/SKILL.md | skill | Design or change a REST API or event contract safely — resources, errors, versio | draft | 516 |
-| skills/code-review/SKILL.md | skill | Review a pull request for correctness, contract safety, architecture, tests and  | draft | 405 |
+| skills/code-review/SKILL.md | skill | Review a pull request for correctness, contract safety, architecture, tests and  | draft | 408 |
 | skills/db-migration/SKILL.md | skill | Plan, write, test and run a zero-downtime server database migration (Flyway/Liqu | draft | 444 |
 | skills/economy-balance/SKILL.md | skill | Model, tune and verify an idle/incremental game economy — cost curves, income, p | draft | 450 |
 | skills/electron-release/SKILL.md | skill | Build, sign, notarize and publish a desktop (Electron or similar) release with a | draft | 428 |
