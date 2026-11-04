@@ -1,5 +1,7 @@
 # agent-playbook
 
+[![CI](https://github.com/eerenyilmazz/agent-playbook/actions/workflows/check.yml/badge.svg)](https://github.com/eerenyilmazz/agent-playbook/actions/workflows/check.yml)
+
 Rule files and skills for an AI agent team doing software work: backend, web, admin panels, e-commerce, mobile, games and desktop apps.
 
 Agents load a small set of **company rules** on every task, then only the **template**, **role** and **skill** files that match the task. This keeps prompts small and rules consistent.
