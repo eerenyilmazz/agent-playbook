@@ -30,7 +30,7 @@ Agents load a small set of **company rules** on every task, then only the **temp
 
 ```
 agent-playbook/
-├── company/              # always loaded — company-wide rules (5 files)
+├── company/              # company-wide rules: 2 always, 3 task (5 files)
 ├── templates/<type>/     # loaded by project type (8 types, 28 files)
 ├── roles/<role>/         # loaded by the role doing the work (14 roles, 28 files)
 ├── skills/<name>/SKILL.md# step-by-step procedures (12 skills)
@@ -58,13 +58,13 @@ agent-playbook/
 
 ## How agents load files
 
-1. **Always:** every file in `company/`.
+1. **Always:** `company/` files with `scope: always` (engineering-principles, security-basics). The other company files (git, incidents, documentation) load like task files, by `when:`.
 2. **Route:** read `INDEX.md` and pick files whose `when:` trigger matches the task.
 3. **Templates:** only for the project types in the project README (e.g. `software` + `web` + `web-panel`). `software` applies to every code project.
 4. **Roles:** only the role doing the task (a backend task loads `roles/backend/…`, not `roles/frontend/…`).
 5. **Skills:** only when the task is that procedure (e.g. a PR review loads `skills/code-review`).
 
-`scripts/load.py` does this deterministically: `company/` → skill → all files of the role → up to 5 template files ranked by how well their `when:` line matches `--task` → stops at the budget.
+`scripts/load.py` does this deterministically: `company/` always files → skill → all files of the role → up to 5 company-task and template files ranked by how well their `when:` line matches `--task` → stops at the budget.
 
 Typical load: 8–14 files, 2300–4000 tokens. Never load whole folders.
 
@@ -75,7 +75,7 @@ Typical load: 8–14 files, 2300–4000 tokens. Never load whole folders.
 4. Templates, then roles
 5. Skill steps
 
-**Example — "add a refund endpoint to the admin panel"** (backend, api-design): `company/*` + `skills/api-design` + `roles/backend/*` + `payment-flow`, `permissions-and-roles`, `audit-trail`, `performance-budget`, `table-and-form-patterns` → 14 files, ~3900 tokens.
+**Example — "add a refund endpoint to the admin panel"** (backend, api-design): `company/` always + `skills/api-design` + `roles/backend/*` + `payment-flow`, `permissions-and-roles`, `audit-trail`, `performance-budget`, `table-and-form-patterns` → 11 files, ~3200 tokens.
 
 ## Token budget
 
@@ -83,10 +83,10 @@ Prompt limit is **5000 tokens**. Sizes are estimated as characters ÷ 4.
 
 | Scope | Limit | Current |
 |---|---|---|
-| All `company/` files together | ≤ 2500 | ~1300 |
-| One `company/` file | ≤ 400 | — |
+| All `always` files together | ≤ 2500 tokens · ≤ 2400 chars without frontmatter (ArkeLab) | ~560 tokens · ~2200 chars |
+| One `always` file | ≤ 400 tokens · ≤ 1200 chars (ArkeLab) | — |
 | One task file (template/role) | ≤ 600 | — |
-| Per task total | ≤ 5000 | `company/` + ~5 files |
+| Per task total | ≤ 5000 tokens (ArkeLab: 5000 chars for the whole prompt) | always + ~5 files |
 
 `scripts/check.py` fails if a budget is exceeded. Exact per-file sizes are in `INDEX.md`.
 
@@ -221,7 +221,7 @@ python3 scripts/check.py --no-write # validate only (used in CI)
 Validates:
 - Required frontmatter (`scope`, `owner`, `status`; `when` for task files; `name`/`description` for skills, `name` = folder)
 - Every repo path linked in a file exists (`company/`, `templates/`, `roles/`, `examples/`, `skills/`)
-- Token budgets per file and for `company/` in total
+- Token budgets per file and for `always` files in total, plus ArkeLab's character limits
 
 GitHub Actions runs the check on every push and pull request (`.github/workflows/check.yml`).
 

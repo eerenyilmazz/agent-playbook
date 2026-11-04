@@ -1,5 +1,6 @@
 ---
-scope: always
+scope: task
+when: Branching, committing, opening or merging a PR, tagging a release
 owner: Eren
 status: draft
 ---

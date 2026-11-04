@@ -95,12 +95,22 @@ Not: Eşleme tabloları ArkeLab kataloğundaki kimliklerin hatırlanmasına daya
 - `check.py` ArkeLab sınırlarını da denetliyor: `always` ≤ 1200 karakter, `when` ≤ 200, `owner` ≤ 80.
 - Commit'lenmiş `__pycache__` silindi, `.gitignore` eklendi.
 
-## 8b. Hâlâ açık (ArkeLab kodundan doğrulanmalı)
+## 8b. ArkeLab kodundan doğrulananlar (2026-11-04, Arkhelab-main zip)
 
-- **§5-2 birim:** `company/` toplamı ~5150 karakter. ArkeLab `PROMPT_LIMIT=5000` karakter ise yalnız şirket dokümanları sınırı aşar. Birim karakterse ya limit yükseltilir ya da playbook'ta `always` toplamı için yeni bir karakter bütçesi tanımlanır.
-- **§4 kimlikler:** rol/şablon ad eşlemesi ArkeLab kataloğundan teyit edilmeli.
-- **§10 çelişki:** `company/git-and-versioning.md` ve `company/engineering-principles.md` ArkeLab çalışma kurallarıyla (owner-only main, Ponytail) karşılaştırılmalı; ArkeLab'a özel kurallar ArkeLab tarafında kalır.
-- **Lisans:** playbook'ta yok; karar verilmeli.
+- **§5-2 birim: karakter.** `electron/company-system.cjs`: `PROMPT_LIMIT = 5000` karakter, tüm isteme (şirket + şablonlar + roller + doküman listeleri) uygulanır, 300 karakter pay ayrılır; sığmayan bölümler düşer ve uyarı eklenir. `always` dokümanlar içerik olarak gömülür ve 1200 karakterde kırpılır; `task` dokümanlar yalnız ad + `when` ile listelenir; `reference` yalnız ad.
+- **Karar (Eren): 2 always + 3 task.** `engineering-principles` ve `security-basics` `always`; `git-and-versioning`, `incidents-and-rollback`, `documentation-standard` `task` (`when` ile). Öncelik sırası `engineering-principles`'a taşındı. `check.py`: `always` gövdeleri toplamı ≤ 2400 karakter.
+- **§4 ad eşlemesi (düzeltilmiş):**
+  - Roller aynı: `decision-maker`, `qa-security`, `code-reviewer`, `security-reviewer`, `devops-cloud`, `technical-writer`, `data-engineer`.
+  - Roller farklı: `pm` → `project-manager`, `frontend` → `frontend-developer`, `backend` → `backend-developer`, `ux-designer` → `ui-ux-engineer`.
+  - ArkeLab'da yok: `game-developer`, `mobile-developer`, `release-manager`. ArkeLab'da olup playbook'ta yok: `researcher`.
+  - Şablonlar farklı: `idle-game` → `game-idle`, `desktop` → `desktop-product`. ArkeLab'da olup playbook'ta yok: `web-presentation`, `game-mobile`, `game-pc`, `game-hyper-casual`.
+- **Kayıt sınırları:** kayıt başına en çok 30 doküman; ad `.md` ile biten ve benzersiz; içerik ≤ 20000; `when` ≤ 200; `owner` ≤ 80; `roles` ≤ 40 kimlik.
+- **Main'e alma:** ArkeLab'da yalnız owner `burak` (Burakka1). Eren'in değişiklikleri kişisel branch'ten gelir.
+
+## 8c. Hâlâ açık
+
+- §10 kural çakışması: `git-and-versioning` (squash, protected main) ile ArkeLab yayınlama kuralları (`branch.publish`, owner-only main) — ArkeLab'a özel kurallar ArkeLab tarafında kalır; playbook genel kural olarak çelişmiyor ama agent önceliği için ArkeLab şirket kuralları playbook'un üstünde olmalı.
+- Lisans: playbook'ta yok.
 
 ## 9. Kabul ölçütleri
 

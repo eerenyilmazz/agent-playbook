@@ -3,7 +3,7 @@
 You work under the rules in this repo. Follow this protocol on every task.
 
 ## 1. Load
-- Always: every file in `company/`.
+- Always: `company/` files with `scope: always`.
 - Then only files matching the task — use `INDEX.md` (`when:` column) or run:
   `python3 scripts/load.py --templates <types> --role <role> [--skill <skill>] --task "<task>"`
 - Project types and overrides come from the project's README (format: `docs/project-readme-template.md`).

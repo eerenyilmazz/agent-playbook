@@ -2,10 +2,10 @@
 """Build the rule bundle for one task, within the token budget.
 
 Selection is deterministic:
-  1. company/ files (always).
+  1. company/ files with scope: always.
   2. Skill, if given.
   3. All files of the chosen role (the agent's own rules).
-  4. Up to --max-files template files whose `when:` line best matches the task text.
+  4. Up to --max-files company task files and template files whose `when:` line best matches the task text.
   5. Stop adding when the budget would be exceeded.
 
 Examples:
@@ -75,8 +75,12 @@ def main() -> int:
         used += cost
         return True
 
+    company_task = []
     for path in sorted((ROOT / "company").glob("*.md")):
-        add(path)
+        if re.search(r"^scope:\s*always\s*$", path.read_text(encoding="utf-8"), re.M):
+            add(path)
+        else:
+            company_task.append(path)
 
     if args.skill:
         skill = ROOT / "skills" / args.skill / "SKILL.md"
@@ -98,11 +102,11 @@ def main() -> int:
 
     task_words = words(args.task)
     candidates = []
-    for folder in template_dirs:
-        for path in sorted(folder.glob("*.md")):
-            match = score(path, path.read_text(encoding="utf-8"), task_words)
-            if match:
-                candidates.append((match, path))
+    template_files = [path for folder in template_dirs for path in sorted(folder.glob("*.md"))]
+    for path in company_task + template_files:
+        match = score(path, path.read_text(encoding="utf-8"), task_words)
+        if match:
+            candidates.append((match, path))
     candidates.sort(key=lambda c: (-c[0], str(c[1])))
 
     for _, path in candidates[: args.max_files]:
