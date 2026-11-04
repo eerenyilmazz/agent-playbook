@@ -21,6 +21,7 @@ Agents load a small set of **company rules** on every task, then only the **temp
 - [Status and review](#status-and-review)
 - [Adding or changing a file](#adding-or-changing-a-file)
 - [Checks and CI](#checks-and-ci)
+- [ArkeLab](#arkelab)
 - [Conventions](#conventions)
 
 ---
@@ -231,9 +232,17 @@ Agents end their output with `Playbook gap: <file> — <problem> — <fix>` when
 - Default numbers (latency, PR size, rollout steps) are industry defaults; tune per project via overrides.
 - All files are `draft` until the owner reviews them.
 
+## ArkeLab
+
+ArkeLab imports this repo as the content layer of its *Team and Templates* model (company / template / role / skill records). Mapping, decisions and open items: `docs/arkelab-integration.md`.
+
+- `check.py` also enforces ArkeLab limits: `always` file ≤ 1200 chars, `when` ≤ 200, `owner` ≤ 80.
+- Renaming or moving a file changes its identity in ArkeLab — list it in the PR.
+- ArkeLab-specific workflow rules (task gates, publishing, Jira states) live in ArkeLab, not here.
+
 ## Conventions
 
 - **Language:** English for all files.
 - **Single source:** security → `company/security-basics.md`; ADR format → `templates/software/architecture-decision-record.md`; incidents → `company/incidents-and-rollback.md`; migrations → `roles/backend/database-migrations.md`.
 - **Production-first:** backward compatibility, small reversible changes, feature flags for risk, explicit breaking-change labels.
-- **Commits:** Conventional Commits; squash merge into protected `main`.
+- **Commits:** Conventional Commits; PRs only, squash merge into `main` (see `CONTRIBUTING.md`).
