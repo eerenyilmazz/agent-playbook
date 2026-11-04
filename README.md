@@ -47,6 +47,14 @@ agent-playbook/
 
 ## Quick start
 
+### Requirements
+
+- **Python 3.8 or newer** (`python3 --version`). The scripts use only the standard library (`argparse`, `re`, `sys`, `pathlib`), so there is nothing to `pip install` and no virtual environment is needed. CI runs them with the Python 3 that ships with `ubuntu-latest`.
+- **Git** to clone the repo and open pull requests.
+- No network access is needed to run the scripts; token counts are estimates (characters ÷ 4), not calls to a tokenizer.
+
+### Steps
+
 1. Point your agent system at `AGENTS.md` (loading protocol, rule precedence, gap reporting).
 2. Copy `docs/project-readme-template.md` into each project's README; fill in templates, roles and overrides.
 3. Build the rules for a task:
@@ -210,6 +218,37 @@ Evidence for their facts: `docs/compliance-sources.md` (re-check yearly and befo
 6. **PR** with a Conventional Commit title, e.g. `docs(backend): add caching rules`.
 
 New role or template folder: also add it to the tables in this README.
+
+### Example rule file
+
+A complete task file as it should look when committed (for example `roles/backend/outbound-calls.md`):
+
+````markdown
+---
+scope: task
+when: Retries, timeouts, outbound HTTP calls
+owner: Eren
+status: draft
+---
+# Outbound Calls: Timeouts and Retries
+
+## Timeouts
+- Every outbound call sets a connect and a read timeout. No library defaults.
+- Defaults: connect 2 s, read 5 s. Longer only with a comment naming the dependency's measured p99.
+
+## Retries
+- Retry only idempotent calls (GET, PUT, DELETE, or POST with an idempotency key). See `roles/backend/idempotency-and-queues.md`.
+- Max 3 attempts, exponential backoff with jitter (200 ms, 400 ms, 800 ms ± 20%).
+- Retry on connect errors, 429, 502, 503, 504. Never on other 4xx.
+- Honor `Retry-After` when present.
+
+## Failure handling
+- Circuit breaker around every third-party dependency; open after 5 consecutive failures, half-open after 30 s.
+- Log the final failure once with the trace id. See `roles/backend/errors-and-logging.md`.
+- Return a degraded response only when the product owner has approved one; otherwise fail with 503.
+````
+
+Why it passes `scripts/check.py`: the frontmatter has `scope`, `owner` and `status`; a task file has a `when:` line of 60 characters or fewer; the body stays under 600 tokens (about 2400 characters); and every repo path it links (`roles/backend/...`) exists. After adding a file, run `python3 scripts/check.py` and commit the regenerated `INDEX.md`.
 
 ## Checks and CI
 

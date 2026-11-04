@@ -55,7 +55,7 @@ Always total: ~351 tokens, 1314 chars without frontmatter (ArkeLab budget 2400).
 | templates/mobile/permissions-and-privacy.md | task | Mobile permissions, SDKs, tracking, on-device data | draft | 256 |
 | templates/mobile/store-release.md | task | Publishing or updating an iOS/Android app | draft | 324 |
 | templates/software/architecture-decision-record.md | task | Making a decision that is expensive to reverse | draft | 244 |
-| templates/software/data-and-privacy.md | task | Personal data: storage, logs, retention, transfers | draft | 499 |
+| templates/software/data-and-privacy.md | task | Personal data: storage, logs, retention, transfers | draft | 529 |
 | templates/software/performance-budget.md | task | Endpoints, queries, pages; performance | draft | 238 |
 | templates/software/test-pyramid.md | task | Writing or changing tests; planning test coverage | draft | 272 |
 | templates/web/accessibility.md | task | Building or changing any web UI | draft | 233 |
@@ -65,7 +65,7 @@ Always total: ~351 tokens, 1314 chars without frontmatter (ArkeLab budget 2400).
 | templates/web-commerce/cart-stock-orders.md | task | Cart, inventory, pricing, discounts, order lifecycle | draft | 254 |
 | templates/web-commerce/conversion-tracking.md | task | Analytics events, funnels, tags, A/B tests | draft | 228 |
 | templates/web-commerce/payment-flow.md | task | Payments, checkout, refunds, providers | draft | 361 |
-| templates/web-commerce/tax-returns-compliance.md | task | Tax, invoices, returns, legal texts for e-commerce | draft | 467 |
+| templates/web-commerce/tax-returns-compliance.md | task | Tax, invoices, returns, legal texts for e-commerce | draft | 522 |
 | templates/web-panel/audit-trail.md | task | Admin actions, sensitive changes, audit logs | draft | 204 |
 | templates/web-panel/permissions-and-roles.md | task | Access control, roles, multi-tenant data | draft | 250 |
 | templates/web-panel/table-and-form-patterns.md | task | Panel tables, filters, forms, bulk actions | draft | 289 |

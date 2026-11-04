@@ -15,7 +15,7 @@ docs(adr): add 0007 transactional outbox
 ```
 feat(api)!: return amounts in minor units
 
-BREAKING CHANGE: `amount` is now an integer in minor units (kuruş/cents).
+BREAKING CHANGE: `amount` is now an integer in minor units (for example kuruş, 1/100 of a Turkish lira, or cents).
 Clients must divide by 100. v1 keeps decimals until 2027-01-31.
 ```
 
