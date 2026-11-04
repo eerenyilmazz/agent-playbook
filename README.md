@@ -6,7 +6,7 @@ Agents load a small set of **company rules** on every task, then only the **temp
 
 > All files are `draft` until reviewed. Files marked `review: expert-required` contain legal, tax, payment or store-policy rules and must be confirmed by a qualified expert before they are marked `approved`.
 
-> **About ArkeLab.** ArkeLab is the author's own application for running AI-agent teams on software projects; it is still in development and not publicly available. This repository is its rule library, but it is self-contained: you can use it with any AI agent without ArkeLab, and you can ignore the ArkeLab limits and notes below unless you work on that integration.
+> **Built for ArkeLab.** This playbook is the rule library behind ArkeLab, the author's own application for running AI-agent teams on software projects (in development, not yet publicly available). ArkeLab imports these files as its company, template, role and skill knowledge, which is why the repo has ArkeLab-specific limits and a pull request checklist. The files are plain Markdown, so you can read them without ArkeLab.
 
 ---
 
