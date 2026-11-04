@@ -4,7 +4,7 @@ description: Design or change a REST API or event contract safely — resources,
 ---
 # API Design
 
-Rules: company/engineering-principles.md, company/documentation-standard.md, roles/backend/errors-and-logging.md, roles/backend/idempotency-and-queues.md, company/security-basics.md.
+Rules: company/engineering-principles.md, company/documentation-standard.md, roles/backend/errors-and-logging.md, roles/backend/idempotency-and-queues.md, company/security-details.md.
 
 ## Steps
 1. **Use cases.** List consumer, action, data needed. Design from the consumer, not the table.

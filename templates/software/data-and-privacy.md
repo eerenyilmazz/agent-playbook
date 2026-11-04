@@ -1,6 +1,6 @@
 ---
 scope: task
-when: Handling personal data; logging, storage, retention, deletion, cross-border hosting
+when: Personal data: storage, logs, retention, transfers
 owner: Eren
 status: draft
 review: expert-required (KVKK/GDPR)

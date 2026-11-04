@@ -1,6 +1,6 @@
 ---
 scope: task
-when: Desktop apps: local database, settings, file formats, cross-platform paths, shutdown, logs
+when: Desktop local data, paths, shutdown, logs
 owner: Eren
 status: draft
 ---

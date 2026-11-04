@@ -22,6 +22,8 @@ ARKELAB_ALWAYS_MAX_CHARS = 1200
 # ArkeLab's whole prompt is 5000 chars (minus 300 reserve); always docs get at most this much of it.
 ARKELAB_ALWAYS_TOTAL_CHARS = 2400
 ARKELAB_WHEN_MAX_CHARS = 200
+# Every task doc is listed with its `when` in the 5000-char prompt; short triggers keep roles from being dropped.
+WHEN_MAX_CHARS = 60
 ARKELAB_OWNER_MAX_CHARS = 80
 LINK_RE = re.compile(r"\b((?:company|templates|roles|examples|skills)/[a-zA-Z0-9/_-]+\.md)\b")
 
@@ -65,6 +67,8 @@ def main() -> int:
             always_chars += len(re.sub(r"^---\n.*?\n---\n", "", text, flags=re.S))
             if len(text) > ARKELAB_ALWAYS_MAX_CHARS:
                 errors.append(f"{rel}: {len(text)} chars > ArkeLab always limit {ARKELAB_ALWAYS_MAX_CHARS}")
+        if len(meta.get("when", "")) > WHEN_MAX_CHARS:
+            errors.append(f"{rel}: 'when' > {WHEN_MAX_CHARS} chars (prompt cost)")
         if len(meta.get("when", "")) > ARKELAB_WHEN_MAX_CHARS:
             errors.append(f"{rel}: 'when' > {ARKELAB_WHEN_MAX_CHARS} chars (ArkeLab)")
         if len(meta.get("owner", "")) > ARKELAB_OWNER_MAX_CHARS:

@@ -1,6 +1,6 @@
 ---
 scope: task
-when: Building data tables, lists, filters or forms in a panel
+when: Panel tables, filters, forms, bulk actions
 owner: Eren
 status: draft
 ---

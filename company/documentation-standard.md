@@ -1,6 +1,6 @@
 ---
 scope: task
-when: Creating a repo; writing README, CHANGELOG, ADR, API spec or runbook
+when: New repo; README, CHANGELOG, ADR, API spec, runbook
 owner: Eren
 status: draft
 ---

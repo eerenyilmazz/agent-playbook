@@ -1,6 +1,6 @@
 ---
 scope: task
-when: Admin actions, sensitive data changes, compliance logging
+when: Admin actions, sensitive changes, audit logs
 owner: Eren
 status: draft
 ---
