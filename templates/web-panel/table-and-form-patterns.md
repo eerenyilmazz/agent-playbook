@@ -11,7 +11,8 @@ status: draft
 - Filter/sort/page in the URL.
 - States: loading (skeleton), empty (with next action), error (with retry).
 - Numbers/dates right-aligned, locale-formatted; consistent column order.
-- Bulk actions: show affected count; confirm destructive ones.
+- Bulk actions: show affected count; confirm destructive ones; offer undo where possible.
+- Long operations: show progress and allow cancel.
 - Large exports run async server-side and notify when ready.
 - Prefer cursor/keyset pagination for big or fast-changing tables.
 

@@ -14,7 +14,7 @@ Project rules: templates/mobile/.
 - Central navigation; deep links tested.
 
 ## Rules
-- Main thread for UI only.
+- Main thread for UI only. Touch targets ≥ 44 pt (iOS) / 48 dp (Android).
 - Survive lifecycle: background, process death, restore, rotation — no lost input.
 - Every network call: timeout, error state, retry.
 - Secrets in Keychain/Keystore; none in the bundle.

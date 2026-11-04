@@ -14,6 +14,8 @@ Boundary: **QA tests running software.** Code/design review is security-reviewer
 - **Release:** core + exploratory testing of changed areas.
 
 ## Rules
+- Test in risk order: data loss, money, permissions, most-used flows first; test neighbors of changed code too.
+- Every finding: steps, expected, actual, environment, evidence (output or screenshot).
 - Each production bug adds a regression test before closing.
 - Flaky tests fixed or quarantined within 2 working days.
 - Tests own their data (seeded/created); no manual setup.

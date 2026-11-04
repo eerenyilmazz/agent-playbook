@@ -14,7 +14,7 @@ Rules live in: company/engineering-principles.md, company/git-and-versioning.md,
 5. **Walk the diff** against roles/code-reviewer/common-mistakes.md.
 6. **Tests.** New logic tested? Bug fix has failing-first test? Any test deleted or weakened → blocker.
 7. **Run it** if possible: build, tests, the changed flow.
-8. **Write comments.** Each: label (blocker/should/nit) · problem · why it matters · suggested fix. Praise good decisions briefly.
+8. **Write comments.** Each: label (blocker/should/nit) · file:line · problem · why it matters · suggested fix. Praise good decisions briefly.
 9. **Verdict.**
    - Approve: no blockers.
    - Request changes: ≥ 1 blocker.
