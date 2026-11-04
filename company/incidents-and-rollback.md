@@ -1,6 +1,6 @@
 ---
 scope: task
-when: Production is broken or degraded; planning a release's rollback
+when: Production broken; planning a rollback
 owner: Eren
 status: draft
 ---

@@ -4,7 +4,7 @@ description: Audit a feature, PR or codebase for security issues in code, design
 ---
 # Security Audit
 
-Rules: company/security-basics.md. Checklists: roles/security-reviewer/abuse-cases.md, roles/security-reviewer/dependency-audit.md, roles/security-reviewer/secret-leak-check.md, roles/qa-security/owasp-checks.md. Threats: roles/qa-security/threat-modeling.md.
+Rules: company/security-details.md. Checklists: roles/security-reviewer/abuse-cases.md, roles/security-reviewer/dependency-audit.md, roles/security-reviewer/secret-leak-check.md, roles/qa-security/owasp-checks.md. Threats: roles/qa-security/threat-modeling.md.
 
 ## Steps
 1. **Scope.** List what's in: endpoints, data stores, integrations, roles. State what's out.

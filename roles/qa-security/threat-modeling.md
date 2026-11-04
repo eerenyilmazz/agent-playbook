@@ -1,6 +1,6 @@
 ---
 scope: task
-when: Designing features with auth, payments, personal data, uploads, integrations
+when: Designing auth, payment, upload or data features
 owner: Eren
 status: draft
 ---

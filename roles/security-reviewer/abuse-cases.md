@@ -6,7 +6,7 @@ status: draft
 ---
 # Abuse Cases
 
-Boundary: **security-reviewer reviews code and design**; QA tests. Rules: company/security-basics.md.
+Boundary: **security-reviewer reviews code and design**; QA tests. Rules: company/security-details.md.
 
 Ask "how would someone misuse this?" for each feature:
 

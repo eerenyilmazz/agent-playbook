@@ -98,7 +98,8 @@ Not: Eşleme tabloları ArkeLab kataloğundaki kimliklerin hatırlanmasına daya
 ## 8b. ArkeLab kodundan doğrulananlar (2026-11-04, Arkhelab-main zip)
 
 - **§5-2 birim: karakter.** `electron/company-system.cjs`: `PROMPT_LIMIT = 5000` karakter, tüm isteme (şirket + şablonlar + roller + doküman listeleri) uygulanır, 300 karakter pay ayrılır; sığmayan bölümler düşer ve uyarı eklenir. `always` dokümanlar içerik olarak gömülür ve 1200 karakterde kırpılır; `task` dokümanlar yalnız ad + `when` ile listelenir; `reference` yalnız ad.
-- **Karar (Eren): 2 always + 3 task.** `engineering-principles` ve `security-basics` `always`; `git-and-versioning`, `incidents-and-rollback`, `documentation-standard` `task` (`when` ile). Öncelik sırası `engineering-principles`'a taşındı. `check.py`: `always` gövdeleri toplamı ≤ 2400 karakter.
+- **Karar (Eren): 2 always + 4 task.** `engineering-principles` ve `security-basics` `always` ve kısaltılmış özet (toplam ~1300 karakter); ayrıntılar `security-details` (task) ve `git-and-versioning` (PR kuralları) dosyalarında. `git-and-versioning`, `incidents-and-rollback`, `documentation-standard`, `security-details` `task`. Öncelik sırası `engineering-principles`'ta. `check.py`: `always` gövdeleri toplamı ≤ 2400 karakter, `when` ≤ 60 karakter.
+- **Ölçüm (içe aktarıcı ile, ArkeLab `brief`):** web-commerce + 3 rol → 3996; web-panel + web-commerce + 5 rol → 4601; mobile + web-panel + 5 rol → 4602 karakter (sınır 4700). 2 şablon + 7 rolde rol bölümü düşer (ArkeLab uyarı verir). Daha büyük ekipler için owner kararı: `PROMPT_LIMIT` veya rol bölümünün sırası.
 - **§4 ad eşlemesi (düzeltilmiş):**
   - Roller aynı: `decision-maker`, `qa-security`, `code-reviewer`, `security-reviewer`, `devops-cloud`, `technical-writer`, `data-engineer`.
   - Roller farklı: `pm` → `project-manager`, `frontend` → `frontend-developer`, `backend` → `backend-developer`, `ux-designer` → `ui-ux-engineer`.

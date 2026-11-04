@@ -1,6 +1,6 @@
 ---
 scope: task
-when: Branching, committing, opening or merging a PR, tagging a release
+when: Branches, commits, PRs, tags
 owner: Eren
 status: draft
 ---
@@ -16,6 +16,8 @@ status: draft
 - One logical change per commit (examples/commits.md). No secrets, generated files or large binaries.
 
 ## Pull requests
+- One PR, one purpose, < 400 lines. Never mix refactor and behavior change.
+- Contract changes (API, schema, event, UI) flagged as potentially breaking.
 - Body: what, why, risk level, test evidence, rollback path, breaking? (yes/no).
 - Merge requires: 1+ approval, green CI, resolved comments. Squash merge.
 - Revert first if `main` breaks; fix in a new PR.

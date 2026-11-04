@@ -1,6 +1,6 @@
 ---
 scope: task
-when: Analytics events, funnel tracking, marketing tags, A/B tests
+when: Analytics events, funnels, tags, A/B tests
 owner: Eren
 status: draft
 ---

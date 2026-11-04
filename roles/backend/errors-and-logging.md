@@ -1,6 +1,6 @@
 ---
 scope: task
-when: Error handling, API error responses, logging, observability
+when: Errors, API error bodies, logging, metrics
 owner: Eren
 status: draft
 ---

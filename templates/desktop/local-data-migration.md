@@ -1,6 +1,6 @@
 ---
 scope: task
-when: Changing local database, settings or file formats in desktop apps
+when: Desktop local data, paths, shutdown, logs
 owner: Eren
 status: draft
 ---
