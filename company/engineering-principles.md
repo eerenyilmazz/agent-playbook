@@ -6,9 +6,9 @@ status: draft
 # Engineering Principles
 
 ## Change safety
-- Production is live. Backward compatibility is mandatory; breaking changes need explicit request, label and risk note.
-- Small, isolated, reversible changes. No rewrites or architecture resets.
-- Behavior changes ship behind a feature flag when risky.
+- Production is live. Backward compatible; breaking changes need explicit request, label, risk note.
+- Small, isolated, reversible changes. No rewrites.
+- Risky behavior changes behind a feature flag.
 - Every task states risk level (low/medium/high) and why.
 
 ## Code

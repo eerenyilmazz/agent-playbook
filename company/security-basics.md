@@ -5,7 +5,7 @@ status: draft
 ---
 # Security Basics
 
-Single source. Role files and skills reference this; they don't restate it.
+Single source; others link here.
 
 ## Secrets
 - Never in code, commits, logs, URLs or client bundles. Load from env/secret manager.

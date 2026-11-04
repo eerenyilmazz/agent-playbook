@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Validate rule files and regenerate INDEX.md.
 
-Checks: frontmatter fields (rules and skills), broken repo-relative links, token budgets.
+Checks: frontmatter fields (rules and skills), ArkeLab import limits, broken repo-relative links, token budgets.
 Token count is estimated as chars / 4 (no network-dependent tokenizer).
 Usage: python3 scripts/check.py            # check + write INDEX.md
        python3 scripts/check.py --no-write # check only (CI)
@@ -17,6 +17,10 @@ ALWAYS_TOTAL_BUDGET = 2500   # leaves room inside the 5000-token prompt limit
 ALWAYS_FILE_BUDGET = 400
 TASK_FILE_BUDGET = 600
 REQUIRED = {"scope", "owner", "status"}
+# ArkeLab import limits: always docs are cut at 1200 chars; field length caps.
+ARKELAB_ALWAYS_MAX_CHARS = 1200
+ARKELAB_WHEN_MAX_CHARS = 200
+ARKELAB_OWNER_MAX_CHARS = 80
 LINK_RE = re.compile(r"\b((?:company|templates|roles|examples|skills)/[a-zA-Z0-9/_-]+\.md)\b")
 
 
@@ -56,6 +60,12 @@ def main() -> int:
             errors.append(f"{rel}: ~{count} tokens > {budget}")
         if scope == "always":
             always_total += count
+            if len(text) > ARKELAB_ALWAYS_MAX_CHARS:
+                errors.append(f"{rel}: {len(text)} chars > ArkeLab always limit {ARKELAB_ALWAYS_MAX_CHARS}")
+        if len(meta.get("when", "")) > ARKELAB_WHEN_MAX_CHARS:
+            errors.append(f"{rel}: 'when' > {ARKELAB_WHEN_MAX_CHARS} chars (ArkeLab)")
+        if len(meta.get("owner", "")) > ARKELAB_OWNER_MAX_CHARS:
+            errors.append(f"{rel}: 'owner' > {ARKELAB_OWNER_MAX_CHARS} chars (ArkeLab)")
 
         for link in set(LINK_RE.findall(text)):
             if not (ROOT / link).is_file():
